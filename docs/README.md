@@ -6,6 +6,10 @@ Dokumentacija projekta i materijali uz vježbe. Kod pokazuje **što** smo naprav
 
 [`ocekivanja.md`](ocekivanja.md) — **pročitaj prvo.** Kako radimo, kako se predaje i boduje, pravila za AI, kako postaviti pitanje i česta pitanja.
 
+## GitHub Education
+
+[`github-education.md`](github-education.md) — kako aktivirati Student Developer Pack i što napraviti ako je prijava odbijena.
+
 ## Silabus
 
 [`silabus.md`](silabus.md) — informacije o kolegiju, ishodi učenja, sadržaj po tjednima, bodovanje, uvjeti za prolaz i literatura.
@@ -13,6 +17,10 @@ Dokumentacija projekta i materijali uz vježbe. Kod pokazuje **što** smo naprav
 ## Popis projekata
 
 [`popis-projekata.md`](popis-projekata.md) — aplikacije za individualni projekt, obavezni uvjeti i kako predložiti vlastitu.
+
+## Git i GitHub
+
+[`git-cheatsheet.md`](git-cheatsheet.md) — sve git i GitHub naredbe koje koristiš na kolegiju: postavljanje, predaja laba, grane, checkpointi, popravljanje grešaka.
 
 ## Materijali po tjednima
 

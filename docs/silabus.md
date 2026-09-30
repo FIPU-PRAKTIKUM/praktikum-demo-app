@@ -11,7 +11,7 @@ Sveučilište Jurja Dobrile u Puli · Fakultet informatike · akademska godina 2
 | Stavka | Vrijednost |
 | --- | --- |
 | Kod i naziv kolegija | [kod], Praktikum (DevOps i infrastruktura) |
-| Nastavnici | [ime kolege, titula] (predavanja – teorijski dio); Vanja [prezime, titula] (vježbe – praktični dio) |
+| Nastavnici | Ratomir Karlović, mag. inf. (predavanja – teorijski dio); Vanja Luk, mag. inf. (vježbe – praktični dio) |
 | Studijski program | Informatika (prijediplomski) |
 | Vrsta kolegija | obvezni |
 | Semestar / godina | zimski (5. semestar) / III. |
@@ -19,7 +19,7 @@ Sveučilište Jurja Dobrile u Puli · Fakultet informatike · akademska godina 2
 | Jezik izvođenja | hrvatski, engleski |
 | Broj ECTS bodova | 6 |
 | Broj sati u semestru | 30P – 30V – 0S (redoviti) |
-| Preduvjeti | nema formalnih; preporučeno: Operacijski sustavi, Mrežni sustavi, Programiranje u skriptnim jezicima, Web aplikacije |
+| Preduvjeti | nema formalnih; preporučeno: Operacijski sustavi, Mrežni sustavi, Programiranje u skriptnim jezicima, Web aplikacije, Baze podataka II |
 
 ---
 
@@ -29,7 +29,7 @@ Cilj kolegija je osposobiti studente da samostalno isporuče i održavaju softve
 
 Kolegij je praktičan. Svaki termin završava radom u laboratoriju, a sve cjeline grade isti individualni projekt koji do kraja semestra postaje potpuno automatizirani deployment jedne multi-service aplikacije.
 
-Posebna nit kroz kolegij je primjena umjetne inteligencije u radu na infrastrukturi: studenti koriste AI asistente za pisanje skripti, konfiguracija i analizu incidenata, ali uz provjeru, testiranje i svijest o sigurnosnim rizicima.
+Posebna nit kroz kolegij je primjena umjetne inteligencije u radu na infrastrukturi: studenti koriste AI asistente za pisanje skripti, konfiguracija i analizu incidenata, ali uz provjeru, testiranje i svijest o sigurnosnim rizicima. Slijepo korištenje AI-ja nije dopušteno: student mora razumjeti što AI radi u njegovim skriptama i konfiguracijama i moći objasniti svaku liniju koju preda.
 
 ---
 
@@ -86,7 +86,7 @@ Sav rad je individualan. Ocjena se gradi kontinuirano: projekt nosi polovicu, la
 
 **Laboratorijski zadaci.** Svaki lab je jedan pull request s labelom `lab-XX` u studentovom repozitoriju, otvoren do početka sljedećeg termina. Popis zadataka po tjednima, s poveznicama na kod i materijale, nalazi se u [planu vježbi](../README.md#plan-vježbi). Svaki zadatak nosi 3 boda; broji se 10 najboljih od 13 predaja.
 
-**Individualni projekt.** Svaki student odabire vlastitu multi-service aplikaciju ([s popisa kolegija](popis-projekata.md) ili uz odobrenje nastavnika), tako da nema dva ista projekta. Do kraja semestra mora imati: Dockerfile i Compose, CI/CD pipeline, Infrastructure as Code, deploy na Kubernetes, dashboard s alertom, security provjere u pipelineu i kratki postmortem simuliranog incidenta. Kontrolne točke su git tagovi `checkpoint-1` (7. tjedan) i `checkpoint-2` (13. tjedan) i nose po 10 bodova, završna predaja 30. Napredak se prati kroz povijest commitova.
+**Individualni projekt.** Svaki student odabire vlastitu multi-service aplikaciju ([s popisa kolegija](popis-projekata.md) ili uz odobrenje nastavnika), tako da nema dva ista projekta. Do kraja semestra mora imati: Dockerfile i docker-compose, CI/CD pipeline, Infrastructure as Code, deploy na Kubernetes, dashboard s alertom, security provjere u pipelineu i kratki postmortem simuliranog incidenta. Kontrolne točke su git tagovi `checkpoint-1` (7. tjedan) i `checkpoint-2` (13. tjedan) i nose po 10 bodova, završna predaja 30. Napredak se prati kroz povijest commitova.
 
 **Korištenje AI alata.** AI alati su dopušteni i potaknuti. Uz projekt se predaje kratki AI dnevnik ([`docs/ai-log.md`](ai-log.md)): za što je AI korišten, što je predložio i što je student provjerio ili ispravio. Student mora na obrani objasniti svaki dio koda i konfiguracije.
 
@@ -129,11 +129,13 @@ Student koji ne zadovolji uvjete kontinuiranog praćenja predaje doradu projekta
 
 **Izborna:**
 
-1. Forsgren, N., Humble, J., Kim, G.: *Accelerate: The Science of Lean Software and DevOps*, IT Revolution, 2018. ISBN 978-1942788331.
-2. Beyer, B., Jones, C., Petoff, J., Murphy, N. R. (ur.): *Site Reliability Engineering: How Google Runs Production Systems*, O’Reilly, 2016. ISBN 978-1491929124 (slobodno dostupno na [sre.google](https://sre.google/books/)).
-3. Brikman, Y.: *Terraform: Up & Running – Writing Infrastructure as Code*, 3rd ed., O’Reilly, 2022. ISBN 978-1098116743.
-4. Burns, B., Beda, J., Hightower, K., Evenson, L.: *Kubernetes: Up and Running – Dive into the Future of Infrastructure*, 3rd ed., O’Reilly, 2022. ISBN 978-1098110208.
-5. Humble, J., Farley, D.: *Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation*, Addison-Wesley, 2010. ISBN 978-0321601919.
+Sva izborna literatura slobodno je i legalno dostupna online.
+
+1. Beyer, B., Jones, C., Petoff, J., Murphy, N. R. (ur.): *Site Reliability Engineering: How Google Runs Production Systems*, O’Reilly, 2016. ISBN 978-1491929124. Dostupno na [sre.google/sre-book](https://sre.google/sre-book/table-of-contents/).
+2. Beyer, B., Murphy, N. R., Rensin, D. K., Kawahara, K., Thorne, S. (ur.): *The Site Reliability Workbook: Practical Ways to Implement SRE*, O’Reilly, 2018. ISBN 978-1492029502. Dostupno na [sre.google/workbook](https://sre.google/workbook/table-of-contents/).
+3. Adkins, H., Beyer, B., Blankinship, P., Lewandowski, P., Oprea, A., Stubblefield, A.: *Building Secure and Reliable Systems: Best Practices for Designing, Implementing, and Maintaining Systems*, O’Reilly, 2020. ISBN 978-1492083122. Dostupno na [sre.google/books](https://sre.google/books/).
+4. Chacon, S., Straub, B.: *Pro Git*, 2nd ed., Apress, 2014. ISBN 978-1484200773. Dostupno na [git-scm.com/book](https://git-scm.com/book/en/v2) (licenca CC BY-NC-SA 3.0, PDF i EPUB).
+5. Shotts, W.: *The Linux Command Line*, No Starch Press, 2019. ISBN 978-1593279523. Dostupno na [linuxcommand.org](https://linuxcommand.org/tlcl.php) (licenca CC BY-NC-ND 3.0, PDF).
 
 ---
 

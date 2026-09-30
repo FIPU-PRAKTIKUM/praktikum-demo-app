@@ -8,6 +8,8 @@ Aplikacija je **URL shortener** (API + PostgreSQL + Redis) i zato nije na popisu
 
 **Silabus kolegija:** [`docs/silabus.md`](docs/silabus.md) — ciljevi, ishodi učenja, bodovanje i uvjeti za prolaz.
 
+**Git šalabahter:** [`docs/git-cheatsheet.md`](docs/git-cheatsheet.md) — sve git i GitHub naredbe koje trebaš na kolegiju.
+
 **Popis projekata:** [`docs/popis-projekata.md`](docs/popis-projekata.md) — aplikacije koje možeš odabrati za svoj projekt.
 
 ---

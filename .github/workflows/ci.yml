@@ -1,0 +1,40 @@
+# CI pipeline — kostur.
+# Od 1. tjedna pokreće lint i testove. Ostatak nadograđuješ na vježbama.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r app/requirements.txt ruff pytest
+
+      - name: Lint
+        run: ruff check app
+
+      - name: Test
+        run: python -m pytest -q
+
+  # TODO (6. tjedan): build Docker imagea
+  #   - docker/setup-buildx-action
+  #   - docker/build-push-action (push: false na PR-u)
+
+  # TODO (7. tjedan): push imagea u GHCR na merge u main
+  #   - docker/login-action s ${{ secrets.GITHUB_TOKEN }}
+  #   - tagovi: sha + latest
+  #   - permissions: packages: write
+
+  # TODO (13. tjedan): security
+  #   - aquasecurity/trivy-action — image scanning
+  #   - secret scanning (gitleaks ili GitHub secret scanning)

@@ -1,0 +1,21 @@
+# Lokalni Kubernetes cluster za kolegij.
+# Pokretanje: make cluster-up
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: praktikum
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+    extraPortMappings:
+      # HTTP/HTTPS za ingress (11. tjedan)
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP

@@ -24,72 +24,25 @@ curl http://localhost:8000/health
 
 ---
 
-## 2. Skripta korak po korak
+## 2. Skripta
 
-Cijela skripta je u [`scripts/healthcheck.sh`](../scripts/healthcheck.sh). Ovdje su dijelovi koji su bitni.
+Cijela skripta je u [`scripts/healthcheck.sh`](../scripts/healthcheck.sh), a **objašnjenje linija po liniju** je u [`scripts/README.md`](../scripts/README.md). Ukratko, četiri ideje koje trebaš zapamtiti:
 
-### `set -euo pipefail` — skripta koja ne šuti
+| Ideja | Gdje u skripti | Zašto |
+| --- | --- | --- |
+| Strict mode | `set -euo pipefail` | skripta glasno pada umjesto da tiho nastavi nakon greške |
+| Konfiguracija odvojena od logike | array `SERVICES` na vrhu | novi servis = jedan novi red, logika se ne dira |
+| `curl` koji zna reći "ne" | `curl -fsS --max-time 3` | bez `-f` curl javlja uspjeh i kad servis vraća 500 |
+| Exit code | `exit $(( failed > 0 ))` | cron, CI, Docker i Kubernetes gledaju samo exit code, ne ispis |
 
-```bash
-set -euo pipefail
-```
-
-Bash po defaultu nastavlja dalje i kad naredba padne. To je najčešći uzrok skripti koje "prođu", a zapravo nisu ništa napravile.
-
-| Opcija | Što radi |
-| --- | --- |
-| `-e` | prekini skriptu čim neka naredba vrati grešku |
-| `-u` | greška ako koristiš varijablu koja nije postavljena (tipfeler u imenu varijable) |
-| `-o pipefail` | u `a \| b` greška u `a` se ne sakrije iza uspješnog `b` |
-
-Ovo stavljamo na vrh **svake** skripte na kolegiju.
-
-### Popis servisa
-
-```bash
-SERVICES=(
-  "api=http://localhost:8000/health"
-)
-```
-
-Servisi su u obliku `ime=url`. Sada imamo samo jedan, ali kad u 5. tjednu dođe `compose.yaml` s bazom i cacheom, samo dodajemo redove — skripta ostaje ista.
-
-`"${entry%%=*}"` i `"${entry#*=}"` su bash parameter expansion: prvo vraća sve **prije** `=`, drugo sve **poslije**. Nema potrebe za `cut` ili `awk`.
-
-### `curl` koji zna reći "ne"
-
-```bash
-curl -fsS --max-time 3 "$url"
-```
-
-| Opcija | Zašto |
-| --- | --- |
-| `-f` | HTTP 500 ili 404 tretira kao grešku. **Bez ovoga curl javlja uspjeh i kad servis vraća grešku.** |
-| `-sS` | bez progress bara, ali ispiši grešku ako se dogodi |
-| `--max-time 3` | ne čekaj zauvijek servis koji se objesio |
-
-### Exit code — kako skripta javlja rezultat
-
-```bash
-exit $(( failed > 0 ))
-```
-
-Svaka naredba u Linuxu završava s brojem: **0 znači uspjeh, sve ostalo je greška.** Probaj:
+Probaj odmah:
 
 ```bash
 ./scripts/healthcheck.sh
 echo $?        # 0 ako sve radi, 1 ako nešto ne radi
 ```
 
-Ovo nije detalj. Cron, CI pipeline, Docker healthcheck i Kubernetes probe gledaju **isključivo exit code**, a ne ono što skripta ispiše. Skripta koja uvijek vrati 0 za njih je skripta kojoj je uvijek sve u redu.
-
-### Log
-
-```bash
-echo "$(date '+%F %T') $name $status" | tee -a "$LOG"
-```
-
-`tee -a` ispisuje na ekran i istovremeno dopisuje u datoteku. Svaki zapis ima vrijeme, jer bez vremena log ne pomaže u istrazi.
+Log izgleda ovako:
 
 ```
 2026-10-14 10:05:01 api OK

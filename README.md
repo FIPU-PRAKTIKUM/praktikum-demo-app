@@ -23,6 +23,8 @@ Razliku između dva tjedna vidiš s `git diff week-01 week-02`.
 
 Tablica se nadopunjuje svaki tjedan.
 
+Svaka mapa ima svoj `README.md`: što je u njoj, zašto postoji i objašnjenje koda linija po liniju. Materijali uz vježbe su u [`docs/`](docs/).
+
 ## Pokretanje
 
 ```bash

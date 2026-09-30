@@ -4,6 +4,8 @@ Ovo je aplikacija koju nastavnik gradi uživo na vježbama. Svaki tjedan dobiva 
 
 Aplikacija je **URL shortener** (API + PostgreSQL + Redis) i zato nije na popisu aplikacija za studente. Do 3. tjedna ovdje je placeholder API iz predloška.
 
+**Silabus kolegija:** [`docs/silabus.md`](docs/silabus.md) — ciljevi, ishodi učenja, bodovanje i uvjeti za prolaz.
+
 ---
 
 ## Kako koristiti ovaj repo

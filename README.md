@@ -19,6 +19,7 @@ Razliku između dva tjedna vidiš s `git diff week-01 week-02`.
 | Tag | Tjedan | Što je dodano | Objašnjenje |
 | --- | --- | --- | --- |
 | `week-01` | 1 | početno stanje iz predloška (placeholder API) | — |
+| `week-02` | 2 | `scripts/healthcheck.sh`, cron, troubleshooting | [docs/week-02-healthcheck.md](docs/week-02-healthcheck.md) |
 
 Tablica se nadopunjuje svaki tjedan.
 

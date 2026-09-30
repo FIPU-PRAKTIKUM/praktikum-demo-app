@@ -46,6 +46,8 @@ Ako ne zadovoljiš uvjete, na ispitnom roku predaješ doradu projekta i pristupa
 
 ## 2. Tvoj repozitorij
 
+Prije prvog termina aktiviraj **GitHub Education** — upute su u [`github-education.md`](github-education.md).
+
 U 1. tjednu:
 
 1. Na GitHubu otvori predložak **`praktikum-project-template`** i klikni **Use this template → Create a new repository**.

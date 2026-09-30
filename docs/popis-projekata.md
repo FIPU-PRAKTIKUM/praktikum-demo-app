@@ -4,25 +4,35 @@ Svaki student bira jednu aplikaciju s ovog popisa (ili predlaže svoju uz odobre
 
 ## Aplikacija je u drugom planu
 
-Na ovom kolegiju ne ocjenjuje se aplikacija, nego sve oko nje: Dockerfile, pipeline, deployment, monitoring i sigurnost. Zato:
+Na ovom kolegiju ne ocjenjuje se aplikacija, nego sve oko nje: Dockerfile, pipeline, deployment, monitoring i sigurnost. Svaka komponenta aplikacije znači još jedan Dockerfile, još jedan servis u composeu, još jedan Deployment i još jednu stvar koja može puknuti. **Zato je jednostavnija aplikacija bolji izbor.**
 
-- **Kod aplikacije smije biti jednostavan i smije biti generiran uz AI.** Jezgra aplikacije trebala bi se moći napisati u jednom popodnevu. Ako ne može, prevelika je.
-- Aplikacije su birane tako da svaka ima **nešto zanimljivo za infrastrukturu**: pozadinski posao, stanje koje treba sačuvati, vršno opterećenje, vanjsku ovisnost koja pada. U opisu svake aplikacije piše što ćeš na njoj najviše vježbati.
+- **Kod aplikacije smije biti jednostavan i smije biti generiran uz AI.** Jezgra aplikacije trebala bi se moći napisati u jednom do dva popodneva.
+- **Arhitektura mora stati na jedan slajd:** ako je ne možeš nacrtati s nekoliko kućica i strelica, prevelika je.
+- **Cijeli stack mora raditi s 4 GB RAM-a.** U 11. i 12. tjednu na clusteru uz tvoju aplikaciju rade i Argo CD i Prometheus.
 - Jezik i framework biraš sam. Frontend nije obavezan tamo gdje ne piše drugačije — dovoljan je API koji se može isprobati `curl`-om ili kroz `/docs`.
-- **Minimalne funkcionalnosti** su donja granica. Ne dodaji više dok infrastruktura ne radi.
+- **Minimalne funkcionalnosti su donja granica.** Ne dodaji ništa dok infrastruktura ne radi.
 
-## Obavezno za svaku aplikaciju
+## Minimum za svaku aplikaciju
 
-- najmanje **3 komponente**: aplikacija, baza i barem jedan dodatni servis (cache, worker, message queue, object storage…)
-- **`/health` endpoint** na svakom servisu koji ima HTTP, koji provjerava i veze prema ovisnostima (baza, cache)
+Tri komponente, najjednostavnije moguće:
+
+1. **API** — tvoja aplikacija
+2. **baza** — PostgreSQL (ili druga po izboru)
+3. **Redis** — kao cache (ili za brojače, sesije…)
+
+Uz to:
+
+- **`/health` endpoint** koji provjerava i vezu prema bazi i Redisu
 - barem nekoliko testova
-- nešto što se može mjeriti (broj zahtjeva, trajanje posla, veličina reda) — trebat će za monitoring u 12. tjednu
+- nešto što se može mjeriti (broj zahtjeva, cache hit rate, trajanje posla) — trebat će za monitoring u 12. tjednu
+
+**Worker, message queue, object storage i slično nisu uvjet.** Kod ★★ aplikacija pozadinski posao je dio same ideje aplikacije i obično se pokreće iz istog koda kao zaseban proces.
 
 ## Težina
 
-- ★ — jednostavna logika, standardne komponente. Uz ★ projekt dodaj jednu stavku po izboru s ★★★ razine (npr. worker ili message queue).
-- ★★ — pozadinski poslovi, zakazani zadaci ili vanjske ovisnosti.
-- ★★★ — skaliranje, stateful servisi ili rad u stvarnom vremenu. Neki traže više RAM-a — to piše u opisu.
+- ★ — API + baza + Redis, bez pozadinskih poslova. Najsigurniji izbor.
+- ★★ — isto, plus jedan pozadinski ili zakazani posao, ili jedna vanjska ovisnost.
+- ★★★ — samo za one koji žele više, uz odobrenje nastavnika. Vidi [zasebnu sekciju](#-za-napredne-uz-odobrenje).
 
 ---
 
@@ -32,26 +42,18 @@ Na ovom kolegiju ne ocjenjuje se aplikacija, nego sve oko nje: Dockerfile, pipel
 | --- | --- | --- | --- |
 | 1 | [Pastebin s istekom zapisa](#1-pastebin-s-istekom-zapisa) | ★ | |
 | 2 | [Kanban ploča](#2-kanban-ploča) | ★ | |
-| 3 | [Ankete i glasanje uživo](#3-ankete-i-glasanje-uživo) | ★ | |
-| 4 | [Knjiga dojmova s moderacijom](#4-knjiga-dojmova-s-moderacijom) | ★ | |
-| 5 | [Rezervacija termina](#5-rezervacija-termina) | ★★ | |
-| 6 | [Posudba knjiga s podsjetnicima](#6-posudba-knjiga-s-podsjetnicima) | ★★ | |
-| 7 | [Rezultati amaterske lige](#7-rezultati-amaterske-lige) | ★★ | |
-| 8 | [RSS agregator vijesti](#8-rss-agregator-vijesti) | ★★ | |
-| 9 | [Praćenje cijena proizvoda](#9-praćenje-cijena-proizvoda) | ★★ | |
-| 10 | [Uptime monitor i status stranica](#10-uptime-monitor-i-status-stranica) | ★★ | |
-| 11 | [Helpdesk](#11-helpdesk) | ★★ | |
-| 12 | [Narudžbe za kafić](#12-narudžbe-za-kafić) | ★★ | |
-| 13 | [Generator računa](#13-generator-računa) | ★★ | |
-| 14 | [Obrada slika](#14-obrada-slika) | ★★★ | |
-| 15 | [Chat u stvarnom vremenu](#15-chat-u-stvarnom-vremenu) | ★★★ | |
-| 16 | [Kviz uživo](#16-kviz-uživo) | ★★★ | |
-| 17 | [Minimalni webshop](#17-minimalni-webshop) | ★★★ | |
-| 18 | [Telemetrija senzora](#18-telemetrija-senzora) | ★★★ | |
-| 19 | [Praćenje gradskih autobusa](#19-praćenje-gradskih-autobusa) | ★★★ | |
-| 20 | [Pretraživač dokumenata](#20-pretraživač-dokumenata) | ★★★ | |
-| 21 | [Feature-flag servis](#21-feature-flag-servis) | ★★★ | |
-| 22 | [RAG chatbot nad FAQ-om](#22-rag-chatbot-nad-faq-om) | ★★★ | |
+| 3 | [Ankete i glasanje](#3-ankete-i-glasanje) | ★ | |
+| 4 | [Knjiga dojmova](#4-knjiga-dojmova) | ★ | |
+| 5 | [Zbirka recepata](#5-zbirka-recepata) | ★ | |
+| 6 | [Rezervacija termina](#6-rezervacija-termina) | ★★ | |
+| 7 | [Posudba knjiga s podsjetnicima](#7-posudba-knjiga-s-podsjetnicima) | ★★ | |
+| 8 | [Rezultati amaterske lige](#8-rezultati-amaterske-lige) | ★★ | |
+| 9 | [RSS agregator vijesti](#9-rss-agregator-vijesti) | ★★ | |
+| 10 | [Praćenje cijena proizvoda](#10-praćenje-cijena-proizvoda) | ★★ | |
+| 11 | [Uptime monitor i status stranica](#11-uptime-monitor-i-status-stranica) | ★★ | |
+| 12 | [Helpdesk](#12-helpdesk) | ★★ | |
+| 13 | [Narudžbe za kafić](#13-narudžbe-za-kafić) | ★★ | |
+| 14 | [Generator računa](#14-generator-računa) | ★★ | |
 
 **URL shortener nije na popisu** — to je ogledna aplikacija koju gradimo na vježbama.
 
@@ -61,188 +63,137 @@ Na ovom kolegiju ne ocjenjuje se aplikacija, nego sve oko nje: Dockerfile, pipel
 
 ### 1. Pastebin s istekom zapisa
 
-Servis u koji korisnik zalijepi tekst ili kod i dobije kratki link za dijeljenje. Svaki zapis ima rok trajanja (npr. 1 sat, 1 dan, 1 tjedan), nakon kojeg nestaje.
+Servis u koji korisnik zalijepi tekst ili kod i dobije kratki link za dijeljenje. Svaki zapis ima rok trajanja (1 sat, 1 dan, 1 tjedan), nakon kojeg više nije dostupan.
 
-- **Minimalno:** `POST /pastes` (tekst + trajanje) → ID; `GET /pastes/{id}` → sadržaj ili 404 ako je istekao; zadatak koji periodično briše istekle zapise.
-- **Komponente:** API, PostgreSQL, zakazani posao za čišćenje; ★ dodatak: Redis cache za često čitane zapise.
-- **Što vježbaš:** zakazani posao kao Kubernetes `CronJob`, metrika "broj obrisanih zapisa", alert kad čišćenje ne prođe.
+- **Minimalno:** `POST /pastes` (tekst + trajanje) → ID; `GET /pastes/{id}` → sadržaj ili 404 ako je istekao. Redis služi kao cache za često čitane zapise, a istek možeš riješiti i Redis TTL-om.
+- **Komponente:** API, PostgreSQL, Redis.
+- **Što vježbaš:** cache i TTL, metrika *cache hit rate*. Opcionalno: zakazani posao za brisanje isteklih zapisa iz baze kao Kubernetes `CronJob`.
 
 ### 2. Kanban ploča
 
 Jednostavna ploča sa stupcima *To do*, *In progress* i *Done*, na kojoj korisnik stvara zadatke i premješta ih između stupaca.
 
-- **Minimalno:** registracija i prijava; CRUD za zadatke; promjena statusa; jednostavan frontend ili samo API.
-- **Komponente:** API, PostgreSQL, frontend (ili API docs); ★ dodatak: worker koji šalje dnevni sažetak.
-- **Što vježbaš:** migracije baze kao korak u pipelineu, secrets (lozinke, JWT ključ) kroz Kubernetes Secrets, dva okruženja s različitom konfiguracijom.
+- **Minimalno:** registracija i prijava; CRUD za zadatke; promjena statusa. Redis za sesije ili cache ploče.
+- **Komponente:** API, PostgreSQL, Redis; frontend po želji.
+- **Što vježbaš:** migracije baze kao korak u pipelineu, secrets (lozinka baze, JWT ključ) kroz Kubernetes Secrets, dva okruženja s različitom konfiguracijom.
 
-### 3. Ankete i glasanje uživo
+### 3. Ankete i glasanje
 
-Korisnik napravi anketu s nekoliko odgovora, podijeli link, a rezultati se osvježavaju dok ljudi glasaju.
+Korisnik napravi anketu s nekoliko odgovora, podijeli link, a drugi glasaju i vide rezultate.
 
-- **Minimalno:** stvaranje ankete; glasanje (jedan glas po korisniku ili po IP-u); `GET` rezultata; brojači u Redisu, trajni zapis u bazi.
-- **Komponente:** API, Redis, PostgreSQL; ★ dodatak: worker koji periodično prebacuje brojače iz Redisa u bazu.
-- **Što vježbaš:** rate limiting, ponašanje pod naglim opterećenjem (load test s `hey` ili `k6`), što se dogodi s glasovima kad Redis padne.
+- **Minimalno:** stvaranje ankete; glasanje (jedan glas po korisniku ili IP-u); `GET` rezultata. Brojači glasova u Redisu, ankete i konačni rezultati u bazi.
+- **Komponente:** API, PostgreSQL, Redis.
+- **Što vježbaš:** rate limiting, jednostavan load test (`hey` ili `k6`), što se dogodi s glasovima kad se Redis restartira.
 
-### 4. Knjiga dojmova s moderacijom
+### 4. Knjiga dojmova
 
-Javna stranica na koju posjetitelji ostavljaju poruke. Svaka poruka prvo prolazi automatsku provjeru (zabranjene riječi, duljina, spam) i tek onda postaje vidljiva.
+Javna stranica na koju posjetitelji ostavljaju kratke poruke. Poruke se prije objave provjeravaju na zabranjene riječi i duljinu.
 
-- **Minimalno:** `POST` poruke (odlazi u red); worker koji provjerava i odobrava ili odbija; `GET` odobrenih poruka.
-- **Komponente:** API, PostgreSQL, message queue (Redis ili RabbitMQ), worker.
-- **Što vježbaš:** asinkrona obrada, metrika "duljina reda", što se dogodi kad worker ne radi (poruke čekaju, ne gube se).
+- **Minimalno:** `POST` poruke s provjerom; `GET` zadnjih N objavljenih poruka iz Redis cachea; brisanje poruke (admin).
+- **Komponente:** API, PostgreSQL, Redis.
+- **Što vježbaš:** invalidacija cachea kad stigne nova poruka, metrika "odbijenih poruka", konfiguracija popisa zabranjenih riječi kroz ConfigMap.
+
+### 5. Zbirka recepata
+
+Zbirka recepata s pretragom po sastojku i popisom najgledanijih recepata.
+
+- **Minimalno:** CRUD recepata (naziv, sastojci, upute); pretraga po sastojku; "najpopularniji" recepti iz Redis brojača pregleda.
+- **Komponente:** API, PostgreSQL, Redis.
+- **Što vježbaš:** caching, početni podaci (seed) kao dio deploymenta, backup i vraćanje baze.
 
 ---
 
 ## ★★ Srednje
 
-### 5. Rezervacija termina
+### 6. Rezervacija termina
 
-Sustav za rezervaciju termina (teniski tereni, dvorane, konzultacije). Korisnik vidi slobodne termine, rezervira jedan i dobije potvrdu e-mailom.
+Sustav za rezervaciju termina (teniski tereni, dvorane, konzultacije). Korisnik vidi slobodne termine, rezervira jedan i dobije potvrdu.
 
-- **Minimalno:** popis resursa i slobodnih termina; rezervacija bez dvostrukog bukiranja; potvrda e-mailom preko workera.
-- **Komponente:** API, PostgreSQL, worker za e-mail, [Mailpit](https://mailpit.axllent.org/) kao lažni mail server.
-- **Što vježbaš:** asinkroni poslovi, konfiguracija po okruženju (dev šalje u Mailpit, "prod" bi slao pravi mail), SMTP podaci kao secret.
+- **Minimalno:** popis resursa i slobodnih termina; rezervacija bez dvostrukog bukiranja; potvrda e-mailom iz pozadinskog posla.
+- **Komponente:** API, PostgreSQL, Redis (lock za termin ili red poslova), [Mailpit](https://mailpit.axllent.org/) kao lažni mail server.
+- **Što vježbaš:** pozadinski posao, konfiguracija po okruženju (dev šalje u Mailpit), SMTP podaci kao secret.
 
-### 6. Posudba knjiga s podsjetnicima
+### 7. Posudba knjiga s podsjetnicima
 
-Mala knjižnica: evidencija knjiga i posudbi, s automatskim podsjetnikom nekoliko dana prije roka za vraćanje i upozorenjem kad rok istekne.
+Mala knjižnica: evidencija knjiga i posudbi, s automatskim podsjetnikom prije roka za vraćanje.
 
 - **Minimalno:** CRUD knjiga i članova; posudba i vraćanje; dnevni zakazani posao koji šalje podsjetnike (e-mail u Mailpit ili zapis u log).
-- **Komponente:** API, PostgreSQL, zakazani worker, Mailpit.
-- **Što vježbaš:** zakazani poslovi, idempotentnost (podsjetnik se ne smije poslati dvaput ako posao krene ponovno), alert kad posao ne prođe.
+- **Komponente:** API, PostgreSQL, Redis, zakazani posao.
+- **Što vježbaš:** Kubernetes `CronJob`, idempotentnost (podsjetnik se ne smije poslati dvaput ako posao krene ponovno), alert kad posao ne prođe.
 
-### 7. Rezultati amaterske lige
+### 8. Rezultati amaterske lige
 
-Stranica s rezultatima, rasporedom i tablicom jedne amaterske lige (nogomet, košarka, pikado…). Rezultati se unose ručno ili ih periodično puni skripta.
+Stranica s rezultatima i tablicom jedne amaterske lige (nogomet, košarka, pikado…).
 
-- **Minimalno:** ekipe, utakmice i rezultati; automatski izračun tablice; cache tablice u Redisu koji se poništava kad stigne novi rezultat.
-- **Komponente:** API, PostgreSQL, Redis, zakazani posao za uvoz rezultata (iz CSV-a ili lažnog izvora); frontend po želji.
-- **Što vježbaš:** caching i invalidacija, vršno opterećenje nakon utakmica, usporedba latencije s cacheom i bez njega na dashboardu.
+- **Minimalno:** ekipe, utakmice i rezultati; automatski izračun tablice; tablica u Redis cacheu koji se poništava kad stigne novi rezultat; zakazani uvoz rezultata iz CSV-a.
+- **Komponente:** API, PostgreSQL, Redis, zakazani posao.
+- **Što vježbaš:** caching i invalidacija, usporedba latencije s cacheom i bez njega na dashboardu.
 
-### 8. RSS agregator vijesti
+### 9. RSS agregator vijesti
 
-Aplikacija koja periodično povlači RSS feedove s nekoliko portala, sprema članke i prikazuje ih na jednom mjestu, s pretragom po naslovu.
+Aplikacija koja periodično povlači RSS feedove s nekoliko portala i prikazuje članke na jednom mjestu.
 
-- **Minimalno:** popis feedova; worker koji svakih N minuta povlači nove članke bez duplikata; `GET` članaka s filtriranjem.
-- **Komponente:** fetcher worker, PostgreSQL, API; frontend po želji.
-- **Što vježbaš:** vanjski izvori koji ne rade ili su spori — retry, backoff i timeout; metrika "uspješnih / neuspjelih dohvaćanja po izvoru".
+- **Minimalno:** popis feedova; pozadinski posao koji svakih N minuta povlači nove članke bez duplikata; `GET` članaka s filtriranjem po izvoru.
+- **Komponente:** API, PostgreSQL, Redis, fetcher posao.
+- **Što vježbaš:** vanjski izvori koji ne rade ili su spori — timeout, retry i backoff; metrika "uspješnih / neuspjelih dohvaćanja po izvoru".
 
-### 9. Praćenje cijena proizvoda
+### 10. Praćenje cijena proizvoda
 
-Korisnik doda proizvod (link ili lažni katalog) i ciljanu cijenu, a sustav periodično provjerava cijenu i javi kad padne ispod cilja.
+Korisnik doda proizvod i ciljanu cijenu, a sustav periodično provjerava cijenu i javi kad padne ispod cilja.
 
-- **Minimalno:** dodavanje proizvoda za praćenje; scheduler koji provjerava cijene; povijest cijena; obavijest (e-mail u Mailpit ili webhook).
-- **Komponente:** scheduler/worker, PostgreSQL, API, notifikacije. Za izvor cijena preporuka je **lažni katalog koji sami napravite** (mali servis koji nasumično mijenja cijene), a ne scraping stvarnih trgovina.
-- **Što vježbaš:** ovisnost o vanjskom servisu koji pada, alerting, graf povijesti cijena u Grafani.
+- **Minimalno:** dodavanje proizvoda za praćenje; zakazani posao koji provjerava cijene; povijest cijena; obavijest (Mailpit ili zapis u log).
+- **Komponente:** API, PostgreSQL, Redis, zakazani posao. Izvor cijena je **lažni katalog koji sam napraviš** (jedan endpoint koji nasumično mijenja cijene), a ne scraping stvarnih trgovina.
+- **Što vježbaš:** ovisnost o vanjskom servisu koji ponekad ne radi, alerting, graf povijesti cijena u Grafani.
 
-### 10. Uptime monitor i status stranica
+### 11. Uptime monitor i status stranica
 
-Mali klon status stranice: korisnik doda URL-ove, sustav ih redovito provjerava i prikazuje dostupnost i povijest ispada.
+Mali klon status stranice: korisnik doda URL-ove, sustav ih redovito provjerava i prikazuje dostupnost.
 
-- **Minimalno:** popis URL-ova za praćenje; checker worker (svakih 30–60 s); postotak dostupnosti za zadnjih 24 h; javna status stranica.
-- **Komponente:** checker worker, PostgreSQL, API, status stranica.
-- **Što vježbaš:** SLI i SLO u najčišćem obliku; pitanje *tko nadzire nadzornika* — alert kad sam checker prestane raditi. Nastavak ideje health check skripte iz 2. tjedna.
+- **Minimalno:** popis URL-ova; pozadinski posao koji ih provjerava svakih 30–60 s; postotak dostupnosti za zadnjih 24 h; javna status stranica ili endpoint.
+- **Komponente:** API, PostgreSQL, Redis (zadnji status), checker posao.
+- **Što vježbaš:** SLI i SLO u najčišćem obliku; alert kad sam checker prestane raditi. Nastavak ideje health check skripte iz 2. tjedna.
 
-### 11. Helpdesk
+### 12. Helpdesk
 
-Sustav za prijavu problema: korisnik otvori ticket, agent ga preuzme i rješava, a korisnik dobiva obavijesti o promjeni statusa.
+Sustav za prijavu problema: korisnik otvori ticket, agent ga preuzme i rješava.
 
-- **Minimalno:** dvije uloge (korisnik i agent); otvaranje, dodjela i zatvaranje ticketa; komentari; e-mail obavijest preko workera.
-- **Komponente:** API, PostgreSQL, worker za e-mail, Mailpit; frontend po želji.
+- **Minimalno:** dvije uloge (korisnik i agent); otvaranje, dodjela i zatvaranje ticketa; komentari; e-mail obavijest o promjeni statusa iz pozadinskog posla.
+- **Komponente:** API, PostgreSQL, Redis, Mailpit.
 - **Što vježbaš:** role i ovlasti (RBAC) u aplikaciji i usporedba s RBAC-om u Kubernetesu, audit log, više secreta.
 
-### 12. Narudžbe za kafić
+### 13. Narudžbe za kafić
 
-Gost skenira QR kod na stolu, naruči s jelovnika, a narudžba se istog trena pojavi na ekranu za šankom. Konobar označi kad je gotova.
+Gost naruči s jelovnika preko linka za svoj stol, a narudžba se pojavi na popisu za šank. Konobar označi kad je gotova.
 
-- **Minimalno:** jelovnik; narudžba po stolu; ekran za šank koji prima nove narudžbe (polling ili WebSocket); promjena statusa narudžbe.
-- **Komponente:** web za goste, prikaz za šank, API, message queue (Redis ili RabbitMQ).
-- **Što vježbaš:** događaji u gotovo stvarnom vremenu, message queue, što se dogodi s narudžbama kad se prikaz za šank restartira.
+- **Minimalno:** jelovnik; narudžba po stolu; endpoint za šank koji vraća otvorene narudžbe (dovoljan je polling); promjena statusa narudžbe.
+- **Komponente:** API, PostgreSQL, Redis (otvorene narudžbe); frontend po želji.
+- **Što vježbaš:** vršno opterećenje u kratkom vremenu, što se dogodi s otvorenim narudžbama kad se API restartira, dvije replike API-ja.
 
-### 13. Generator računa
+### 14. Generator računa
 
-Korisnik unese stavke računa (kupac, artikli, cijene), a sustav u pozadini generira PDF i sprema ga za preuzimanje.
+Korisnik unese stavke računa, a sustav u pozadini generira PDF za preuzimanje.
 
-- **Minimalno:** `POST` računa → posao u redu; worker generira PDF; PDF se sprema u object storage; `GET` statusa i linka za preuzimanje.
-- **Komponente:** API, PostgreSQL, red poslova, PDF worker, [MinIO](https://min.io/) kao S3-kompatibilan storage.
-- **Što vježbaš:** skaliranje workera kad naraste red, pohrana artefakata izvan kontejnera, trajanje posla kao metrika.
+- **Minimalno:** `POST` računa → posao u Redis redu; pozadinski posao generira PDF; `GET` statusa i preuzimanje PDF-a.
+- **Komponente:** API, PostgreSQL, Redis (red poslova), PDF worker. PDF-ove spremaj u volume ili bazu; object storage (MinIO) je opcionalan.
+- **Što vježbaš:** red poslova, trajanje posla kao metrika, PersistentVolume za generirane datoteke.
 
 ---
 
-## ★★★ Zahtjevne
+## ★★★ Za napredne, uz odobrenje
 
-### 14. Obrada slika
+Ove aplikacije su zanimljive, ali svaka sama nosi velik dio semestra, a neke traže više RAM-a nego što stane uz ostatak stacka. Biraj ih samo ako si siguran u osnove i imaš jače računalo. **Prije odabira dogovori opseg s nastavnikom.**
 
-Korisnik uploada sliku, a sustav u pozadini napravi nekoliko verzija (thumbnail, srednja, WebP) i vrati linkove.
-
-- **Minimalno:** upload; posao u RabbitMQ; worker koji generira verzije; spremanje u MinIO; `GET` statusa i linkova.
-- **Komponente:** upload API, MinIO, RabbitMQ, worker, PostgreSQL za metapodatke.
-- **Što vježbaš:** horizontalno skaliranje workera (HPA) kad naraste red, CPU limiti, load test s puno uploada.
-
-### 15. Chat u stvarnom vremenu
-
-Chat sa sobama: korisnici se spoje, uđu u sobu i razmjenjuju poruke u stvarnom vremenu. Povijest poruka ostaje sačuvana.
-
-- **Minimalno:** WebSocket veza; sobe; slanje i primanje poruka; povijest zadnjih N poruka iz baze.
-- **Komponente:** WebSocket servis, Redis pub/sub, PostgreSQL, jednostavan frontend.
-- **Što vježbaš:** skaliranje servisa s trajnim vezama — kad pokreneš 2 replike, poruka mora stići i korisnicima spojenim na drugu repliku (zato Redis pub/sub); ingress i WebSocket.
-
-### 16. Kviz uživo
-
-Kahoot-stil kviz: voditelj pokrene kviz, igrači se spoje kodom, pitanja se prikazuju svima istovremeno, a rang-lista se osvježava nakon svakog pitanja.
-
-- **Minimalno:** stvaranje kviza s pitanjima; spajanje igrača kodom; sinkroni prikaz pitanja; bodovanje i rang-lista.
-- **Komponente:** WebSocket servis, Redis (stanje igre i rang-lista), API, PostgreSQL, frontend.
-- **Što vježbaš:** kratki vršni skokovi prometa (svi odgovaraju u istoj sekundi), load test, stanje igre kad se pod restartira.
-
-### 17. Minimalni webshop
-
-Webshop razbijen u nekoliko malih servisa: katalog, košarica i narudžbe, s lažnim plaćanjem.
-
-- **Minimalno:** katalog proizvoda; košarica po korisniku; narudžba koja poziva mock servis za plaćanje (koji ponekad namjerno ne uspije).
-- **Komponente:** 3 mala servisa (katalog, košarica, narudžbe), PostgreSQL, Redis za košaricu, mock plaćanje.
-- **Što vježbaš:** više servisa u istom pipelineu i Helm chartu, komunikacija između servisa, distribuirano praćenje (tracing) jednog zahtjeva kroz sve servise.
-
-### 18. Telemetrija senzora
-
-Simulirani senzori temperature i vlage šalju mjerenja svakih nekoliko sekundi; sustav ih sprema i prikazuje na dashboardu.
-
-- **Minimalno:** generator podataka (više lažnih senzora); ingest API; spremanje u time-series bazu; upiti za prosjek i maksimum po senzoru.
-- **Komponente:** generator, ingest API, TimescaleDB ili InfluxDB, Grafana.
-- **Što vježbaš:** kontinuiran dotok podataka, retencija (brisanje starih podataka), Grafana dashboard nad vlastitim podacima; alert kad senzor prestane slati.
-
-### 19. Praćenje gradskih autobusa
-
-Simulator šalje GPS pozicije nekoliko autobusa po zadanim linijama, a karta prikazuje gdje se trenutno nalaze.
-
-- **Minimalno:** simulator koji pomiče autobuse po ruti; ingest pozicija; zadnja pozicija svakog autobusa u Redisu; karta na frontendu (npr. Leaflet).
-- **Komponente:** simulator, ingest API, Redis, PostgreSQL za povijest, frontend s kartom.
-- **Što vježbaš:** stream podataka, latencija od pozicije do prikaza kao metrika, skaliranje ingesta.
-
-### 20. Pretraživač dokumenata
-
-Korisnik uploada dokumente (TXT, Markdown, PDF), sustav ih indeksira i omogućuje pretragu po sadržaju.
-
-- **Minimalno:** upload; indekser koji izvuče tekst i pošalje ga u search engine; pretraga s isticanjem pogodaka.
-- **Komponente:** upload API, indekser worker, [Meilisearch](https://www.meilisearch.com/) (lakši) ili OpenSearch (teži, traži puno RAM-a), MinIO za originale.
-- **Što vježbaš:** stateful servis na Kubernetesu (PersistentVolume), backup i vraćanje indeksa, što se dogodi kad se indeks izgubi.
-
-### 21. Feature-flag servis
-
-Vlastiti mali servis za feature flagove: admin uključuje i isključuje funkcionalnosti, a druge aplikacije pitaju servis je li određena funkcionalnost uključena za određenog korisnika.
-
-- **Minimalno:** CRUD flagova; pravila (uključeno za sve, za X % korisnika, za listu korisnika); brzi `GET` za provjeru s cacheom; mala demo aplikacija koja koristi servis.
-- **Komponente:** API, PostgreSQL, Redis cache, admin sučelje, demo klijent.
-- **Što vježbaš:** canary i postupno puštanje funkcionalnosti (povezano sa 7. tjednom), latencija kao kritična metrika, što klijent radi kad servis ne radi (fallback).
-
-### 22. RAG chatbot nad FAQ-om
-
-Chatbot koji odgovara na pitanja studenata na temelju skupa dokumenata (FAQ, pravilnici) koristeći lokalni jezični model i vektorsku pretragu.
-
-- **Minimalno:** učitavanje dokumenata i izrada embeddinga; spremanje u vektorsku bazu; endpoint koji za pitanje nađe relevantne dijelove i generira odgovor s izvorom.
-- **Komponente:** API, pgvector ili Qdrant, [Ollama](https://ollama.com/) s malim modelom, worker za indeksiranje.
-- **Što vježbaš:** resursi i limiti (LLM traži puno memorije i CPU-a), duga trajanja zahtjeva i timeouti, monitoring LLM servisa (povezano s 14. tjednom).
-- **Napomena:** traži najmanje 16 GB RAM-a za ugodan rad. Na slabijem računalu koristiti najmanji model ili odabrati drugi projekt.
+| Aplikacija | Ukratko | Zašto je teško |
+| --- | --- | --- |
+| Obrada slika | upload → RabbitMQ → worker radi thumbnailove → MinIO | 5 komponenti, HPA prema duljini reda |
+| Chat u stvarnom vremenu | sobe i poruke preko WebSocketa | skaliranje trajnih veza, Redis pub/sub između replika, WebSocket kroz ingress |
+| Kviz uživo (Kahoot-stil) | sinkroni prikaz pitanja i rang-lista uživo | stanje igre, vršni skokovi prometa, WebSocket |
+| Minimalni webshop | katalog, košarica, narudžbe kao zasebni servisi | 3+ servisa u svakom koraku (Dockerfile, chart, pipeline), tracing |
+| Telemetrija senzora | simulirani senzori → ingest → time-series baza → Grafana | dodatna baza (TimescaleDB/InfluxDB), stalni dotok podataka |
+| Praćenje gradskih autobusa | simulirani GPS → karta u stvarnom vremenu | stream podataka, frontend s kartom |
+| Pretraživač dokumenata | upload → indeksiranje → pretraga | stateful search engine; OpenSearch traži puno RAM-a (Meilisearch je lakši) |
+| Feature-flag servis | servis za uključivanje funkcionalnosti po korisniku | treba i demo klijent koji ga koristi; latencija kritična |
+| RAG chatbot nad FAQ-om | lokalni LLM + vektorska baza | Ollama traži **16 GB+ RAM-a**; dugi zahtjevi i timeouti |
 
 ---
 
@@ -251,7 +202,11 @@ Chatbot koji odgovara na pitanja studenata na temelju skupa dokumenata (FAQ, pra
 Može, uz odobrenje nastavnika do kraja 2. tjedna. U prijedlogu navedi:
 
 1. što aplikacija radi (dvije rečenice),
-2. koje su 3+ komponente,
-3. što je na njoj zanimljivo za infrastrukturu (pozadinski posao, stanje, opterećenje, vanjska ovisnost).
+2. komponente (minimum: API + baza + Redis),
+3. što je na njoj zanimljivo za infrastrukturu (cache, pozadinski posao, opterećenje, vanjska ovisnost).
 
 Ako ne možeš odgovoriti na treće pitanje, aplikacija vjerojatno nije dobar izbor za ovaj kolegij.
+
+## Ako ti kod aplikacije stvarno ne ide
+
+Na zahtjev možeš dobiti **gotovu jednostavnu aplikaciju** od nastavnika i sav semestar raditi samo infrastrukturu oko nje. Ocjenjuje se ionako infrastruktura, pa to ne utječe na bodove — ali javi se do kraja 2. tjedna.

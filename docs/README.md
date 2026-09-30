@@ -2,6 +2,10 @@
 
 Dokumentacija projekta i materijali uz vježbe. Kod pokazuje **što** smo napravili, a ovi dokumenti **zašto** i **kako**.
 
+## Očekivanja
+
+[`ocekivanja.md`](ocekivanja.md) — **pročitaj prvo.** Kako radimo, kako se predaje i boduje, pravila za AI, kako postaviti pitanje i česta pitanja.
+
 ## Silabus
 
 [`silabus.md`](silabus.md) — informacije o kolegiju, ishodi učenja, sadržaj po tjednima, bodovanje, uvjeti za prolaz i literatura.

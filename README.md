@@ -4,6 +4,8 @@ Ovo je aplikacija koju nastavnik gradi uživo na vježbama. Svaki tjedan dobiva 
 
 Aplikacija je **URL shortener** (API + PostgreSQL + Redis) i zato nije na popisu aplikacija za studente. Do 3. tjedna ovdje je placeholder API iz predloška.
 
+**Pročitaj prvo:** [`docs/ocekivanja.md`](docs/ocekivanja.md) — što se od tebe očekuje, kako se predaje, kako se boduje i odgovori na česta pitanja.
+
 **Silabus kolegija:** [`docs/silabus.md`](docs/silabus.md) — ciljevi, ishodi učenja, bodovanje i uvjeti za prolaz.
 
 **Popis projekata:** [`docs/popis-projekata.md`](docs/popis-projekata.md) — aplikacije koje možeš odabrati za svoj projekt.

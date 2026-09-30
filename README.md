@@ -6,6 +6,8 @@ Aplikacija je **URL shortener** (API + PostgreSQL + Redis) i zato nije na popisu
 
 **Silabus kolegija:** [`docs/silabus.md`](docs/silabus.md) — ciljevi, ishodi učenja, bodovanje i uvjeti za prolaz.
 
+**Popis projekata:** [`docs/popis-projekata.md`](docs/popis-projekata.md) — aplikacije koje možeš odabrati za svoj projekt.
+
 ---
 
 ## Kako koristiti ovaj repo

@@ -1,36 +1,37 @@
 # docs/
 
-Dokumentacija projekta i materijali uz vježbe. Kod pokazuje **što** smo napravili, a ovi dokumenti **zašto** i **kako**.
+Dokumentacija kolegija i materijali uz vježbe. Kod pokazuje **što** smo napravili, a ovi dokumenti **zašto** i **kako**. Isti dokumenti nalaze se i u mapi `docs/` tvog repozitorija iz predloška.
 
-## Očekivanja
+## Pročitaj prvo
 
-[`ocekivanja.md`](ocekivanja.md) — **pročitaj prvo.** Kako radimo, kako se predaje i boduje, pravila za AI, kako postaviti pitanje i česta pitanja.
+| Dokument | Što je unutra |
+| --- | --- |
+| [`ocekivanja.md`](ocekivanja.md) | **počni ovdje** — kako radimo, kako se predaje i boduje, pravila za AI, kako postaviti pitanje, česta pitanja |
+| [`hodogram.md`](hodogram.md) | cijeli semestar i tjedni postupak predaje u nekoliko dijagrama, s objašnjenjem |
+| [`silabus.md`](silabus.md) | službeni silabus: ishodi učenja, sadržaj predavanja, bodovanje, uvjeti za prolaz, literatura |
+| [`popis-projekata.md`](popis-projekata.md) | aplikacije za projekt, minimalni uvjeti i kako predložiti vlastitu |
 
-## GitHub Education
+Plan vježbi tjedan po tjedan je u [README-u repozitorija](../README.md#plan-vježbi).
 
-[`github-education.md`](github-education.md) — kako aktivirati Student Developer Pack i što napraviti ako je prijava odbijena.
+## Postavljanje i alati
 
-## Silabus
+| Dokument | Što je unutra |
+| --- | --- |
+| [`github-education.md`](github-education.md) | kako aktivirati Student Developer Pack i što ako je prijava odbijena |
+| [`git-cheatsheet.md`](git-cheatsheet.md) | sve git i GitHub naredbe: postavljanje, predaja laba, grane, checkpointi, popravljanje grešaka |
+| [`../kind/README.md`](../kind/README.md) | lokalni Kubernetes cluster i česti problemi |
 
-[`silabus.md`](silabus.md) — informacije o kolegiju, ishodi učenja, sadržaj po tjednima, bodovanje, uvjeti za prolaz i literatura.
+## Lekcije po tjednima
 
-## Popis projekata
+Svaki tjedan ima jedan dokument: teorija potrebna za vježbu, koraci koje radimo zajedno, česte greške i zadatak za taj tjedan. Objašnjenje koda linija po liniju nalazi se u README-u mape u kojoj je kod.
 
-[`popis-projekata.md`](popis-projekata.md) — aplikacije za individualni projekt, obavezni uvjeti i kako predložiti vlastitu.
-
-## Git i GitHub
-
-[`git-cheatsheet.md`](git-cheatsheet.md) — sve git i GitHub naredbe koje koristiš na kolegiju: postavljanje, predaja laba, grane, checkpointi, popravljanje grešaka.
-
-## Materijali po tjednima
-
-Svaki tjedan ima jedan dokument: teorija potrebna za vježbu, koraci koje radimo zajedno, česte greške i zadatak za taj tjedan. Objašnjenje koda linija po liniju nalazi se u README-u mape u kojoj je kod (npr. [`scripts/README.md`](../scripts/README.md)).
-
-| Tjedan | Dokument | Kod |
+| Tjedan | Lekcija | Kod |
 | --- | --- | --- |
-| 2 | [Linux za ops: health check skripta](week-02-healthcheck.md) | [`scripts/`](../scripts/) |
+| 2 | [Linux za ops: health check skripta](week-02-healthcheck.md) | [`scripts/`](../scripts/README.md) |
 
 ## Predlošci
+
+Ispunjavaš ih u svom repozitoriju.
 
 | Dokument | Kada se koristi |
 | --- | --- |

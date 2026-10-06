@@ -4,13 +4,40 @@ Ovo je aplikacija koju nastavnik gradi uživo na vježbama. Svaki tjedan dobiva 
 
 Aplikacija je **URL shortener** (API + PostgreSQL + Redis) i zato nije na popisu aplikacija za studente. Do 3. tjedna ovdje je placeholder API iz predloška.
 
-**Pročitaj prvo:** [`docs/ocekivanja.md`](docs/ocekivanja.md) — što se od tebe očekuje, kako se predaje, kako se boduje i odgovori na česta pitanja.
+**Ovdje se ništa ne predaje.** Svoj projekt radiš i predaješ u repozitoriju napravljenom iz predloška `praktikum-project-template`. Isti dokumenti iz `docs/` nalaze se i tamo.
 
-**Silabus kolegija:** [`docs/silabus.md`](docs/silabus.md) — ciljevi, ishodi učenja, bodovanje i uvjeti za prolaz.
+---
 
-**Git šalabahter:** [`docs/git-cheatsheet.md`](docs/git-cheatsheet.md) — sve git i GitHub naredbe koje trebaš na kolegiju.
+## Sadržaj
 
-**Popis projekata:** [`docs/popis-projekata.md`](docs/popis-projekata.md) — aplikacije koje možeš odabrati za svoj projekt.
+**Kreni ovdje**
+
+1. [Što se od tebe očekuje](docs/ocekivanja.md) — **pročitaj cijelo prije prvog termina.** Predaja, bodovanje, pravila za AI, kako postaviti pitanje, česta pitanja.
+2. [Hodogram](docs/hodogram.md) — cijeli semestar i tjedni postupak predaje u dijagramima, s objašnjenjem.
+3. [Kako koristiti ovaj repo](#kako-koristiti-ovaj-repo) — kako pogledati stanje nakon bilo kojeg tjedna.
+
+**O kolegiju**
+
+| Dokument | Kad ti treba |
+| --- | --- |
+| [Plan vježbi](#plan-vježbi) | svaki tjedan — tema, kod i zadatak |
+| [Silabus](docs/silabus.md) | službeni opis kolegija: ishodi, bodovanje, uvjeti za prolaz, literatura |
+| [Popis projekata](docs/popis-projekata.md) | 1.–2. tjedan — odabir aplikacije |
+
+**Upute i alati**
+
+| Dokument | Kad ti treba |
+| --- | --- |
+| [GitHub Education](docs/github-education.md) | prije prvog termina |
+| [Git šalabahter](docs/git-cheatsheet.md) | stalno — sve git i GitHub naredbe |
+| [kind cluster](kind/README.md) | 1. tjedan i od 10. tjedna |
+| Lekcije po tjednima | [2. tjedan](docs/week-02-healthcheck.md) · ostale stižu tijekom semestra ([popis](docs/README.md#lekcije-po-tjednima)) |
+
+**Predlošci** (ispunjavaš ih u svom repou): [AI log](docs/ai-log.md) · [Postmortem](docs/postmortem.md)
+
+**Kod po mapama** — svaka mapa ima `README.md` s objašnjenjem linija po liniju: [`app/`](app/README.md) · [`scripts/`](scripts/README.md) · [`kind/`](kind/README.md) · [`infra/ansible/`](infra/ansible/README.md) · [`k8s/`](k8s/README.md) · [`helm/`](helm/README.md) · [`argocd/`](argocd/README.md) · [`monitoring/`](monitoring/README.md)
+
+**U ovom README-u:** [Kako koristiti ovaj repo](#kako-koristiti-ovaj-repo) · [Plan vježbi](#plan-vježbi) · [Pokretanje](#pokretanje)
 
 ---
 
@@ -27,8 +54,6 @@ git checkout main               # povratak na najnovije stanje
 ```
 
 Svaka mapa ima svoj `README.md`: što je u njoj, zašto postoji i objašnjenje koda linija po liniju. Lekcije uz vježbe su u [`docs/`](docs/).
-
-**Ovdje se ništa ne predaje.** Domaću zadaću radiš u svom repozitoriju napravljenom iz predloška `praktikum-project-template`, kao pull request s labelom `lab-XX`.
 
 ---
 

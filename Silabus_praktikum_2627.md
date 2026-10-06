@@ -8,8 +8,8 @@ Silabus kolegija Praktikum u strukturi izvedbenog plana nastave Fakulteta inform
 
 ### Nastavnici
 
-- Ratomir Karlović, mag. inf. (predavanja)
-- Vanja Luk, mag. inf. (vježbe)
+- Ratomir Karlović, mag. inf.
+- Vanja Luk, mag. inf.
 
 ### Informacije o kolegiju
 
@@ -23,8 +23,8 @@ Silabus kolegija Praktikum u strukturi izvedbenog plana nastave Fakulteta inform
 | Mjesto izvođenja | Pula, informatički laboratorij, e-učenje |
 | Jezik izvođenja | hrvatski, engleski |
 | Broj ECTS bodova | 6 |
-| Broj sati u semestru | 30P – 30V – 0S (redoviti) |
-| Korelativnost | \[dopuniti: 3–5 srodnih kolegija na drugim sveučilištima, s poveznicama\] |
+| Broj sati u semestru | 0P – 0V – 60S (redoviti) |
+| Korelativnost | - |
 | Preduvjeti | Nema formalnih preduvjeta za upis kolegija. Preporučeno predznanje: Operacijski sustavi, Mrežni sustavi, Programiranje u skriptnim jezicima, Web aplikacije. |
 
 ## 2. Cilj kolegija

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<title>Praktikum infografika</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --navy: #14213d; --ink: #14213d; --muted: #5b6475; --line: #dfe3ea;
+    --teal: #0f7c80; --teal-soft: #e3f3f2; --amber: #e09f1f; --amber-soft: #fdf3dc;
+    --red: #c0392b; --red-soft: #fbe9e7; --violet: #5b4bb7; --violet-soft: #ecebfa;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fff; }
+  body { width: 794px; height: 1123px; overflow: hidden; color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif; font-size: 11px; line-height: 1.35;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 10px; background: rgba(20,33,61,.07); padding: 0 3px; border-radius: 3px; }
+  .wrap { padding: 28px 30px 24px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+
+  header { background: var(--navy); color: #fff; border-radius: 14px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: flex-end; }
+  header .k { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #9fd6d3; }
+  header h1 { margin: 6px 0 0; font-size: 30px; font-weight: 800; letter-spacing: -.01em; }
+  header .r { text-align: right; font-size: 10.5px; color: #cfd8e6; }
+  header .r b { color: #fff; font-size: 12px; }
+
+  .label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+
+  /* put do prve vjezbe */
+  .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; position: relative; }
+  .road::before { content: ""; position: absolute; left: 40px; right: 40px; top: 25px; height: 3px; background: repeating-linear-gradient(90deg, var(--teal) 0 10px, transparent 10px 16px); }
+  .stop { position: relative; text-align: center; }
+  .stop .ic { width: 52px; height: 52px; margin: 0 auto 8px; border-radius: 50%; background: var(--teal); color: #fff; display: flex; align-items: center; justify-content: center; border: 4px solid #fff; box-shadow: 0 0 0 2px var(--teal); }
+  .stop.last .ic { background: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
+  .stop .ic svg { width: 24px; height: 24px; }
+  .stop .when { display: inline-block; font-size: 9px; font-weight: 700; padding: 1px 7px; border-radius: 10px; background: var(--amber-soft); color: #8a5a00; margin-bottom: 4px; }
+  .stop h3 { margin: 0 0 4px; font-size: 12.5px; }
+  .stop p { margin: 0; font-size: 10px; color: var(--muted); }
+
+  /* semestar */
+  .weeks { display: grid; grid-template-columns: repeat(15, 1fr); gap: 3px; }
+  .w { border-radius: 6px; padding: 6px 3px 7px; text-align: center; color: #fff; min-height: 74px; display: flex; flex-direction: column; justify-content: space-between; }
+  .w .n { font-size: 9px; opacity: .8; }
+  .w .t { font-size: 9.5px; font-weight: 600; line-height: 1.15; }
+  .w.s { background: #7b8496; }
+  .w.a { background: var(--teal); }
+  .w.b { background: var(--violet); }
+  .w.f { background: var(--amber); color: var(--navy); }
+  .w.cp { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--red); }
+  .phases { display: grid; grid-template-columns: 1fr 6fr 6fr 2fr; gap: 3px; margin-top: 8px; font-size: 9.5px; text-align: center; }
+  .phases div { border-top: 3px solid; padding-top: 3px; color: var(--muted); }
+  .cpnote { margin-top: 6px; font-size: 10px; color: var(--muted); }
+  .cpnote b { color: var(--red); }
+
+  .row { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px; }
+  .box { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+
+  /* tjedni krug */
+  .loop { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 8px; counter-reset: s; }
+  .ls { background: var(--teal-soft); border-radius: 8px; padding: 8px 9px; position: relative; }
+  .ls b { display: block; font-size: 11px; margin-bottom: 2px; }
+  .ls span { font-size: 9.5px; color: var(--muted); }
+  .ls::before { counter-increment: s; content: counter(s); position: absolute; top: -6px; right: -4px; width: 18px; height: 18px; border-radius: 50%; background: var(--teal); color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .deadline { margin-top: 10px; background: var(--amber-soft); border-radius: 8px; padding: 8px 10px; font-size: 10.5px; }
+
+  /* bodovi */
+  .bar { display: flex; height: 30px; border-radius: 7px; overflow: hidden; margin-bottom: 6px; }
+  .bar div { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 11px; border-right: 2px solid #fff; }
+  .bar div:last-child { border-right: 0; }
+  .legend { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 10px; font-size: 10px; margin-bottom: 10px; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+  .pass { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .pass div { background: #f3f5f8; border-radius: 8px; padding: 7px 8px; text-align: center; }
+  .pass b { display: block; font-size: 17px; color: var(--navy); }
+  .pass span { font-size: 9.5px; color: var(--muted); }
+
+  /* pravila */
+  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .rule { border-radius: 10px; padding: 10px 11px; display: grid; grid-template-columns: 26px 1fr; gap: 8px; align-items: start; }
+  .rule svg { width: 22px; height: 22px; }
+  .rule b { display: block; font-size: 11px; margin-bottom: 2px; }
+  .rule span { font-size: 9.8px; color: var(--muted); }
+  .rule.r { background: var(--red-soft); } .rule.r svg { color: var(--red); }
+  .rule.t { background: var(--teal-soft); } .rule.t svg { color: var(--teal); }
+  .rule.v { background: var(--violet-soft); } .rule.v svg { color: var(--violet); }
+  .rule.a { background: var(--amber-soft); } .rule.a svg { color: #b07a10; }
+
+  footer { display: flex; justify-content: space-between; font-size: 9.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <div class="k">Praktikum · DevOps i infrastruktura · 2026./27.</div>
+      <h1>Snađi se u semestru</h1>
+    </div>
+    <div class="r"><b>1 projekt · 1 repozitorij · 15 tjedana</b><br>od koda na laptopu do Kubernetesa s monitoringom</div>
+  </header>
+
+  <!-- PUT DO PRVE VJEŽBE -->
+  <section>
+    <div class="label">Put do prve vježbe</div>
+    <div class="road">
+      <div class="stop">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+        <div class="when">danas</div>
+        <h3>GitHub Education</h3>
+        <p>studentski mail, 2FA, ime kao na dokumentu. Odobrenje traje danima.</p>
+      </div>
+      <div class="stop">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M6 9l3 2-3 2M11 13h5"/><path d="M8 21h8"/></svg></div>
+        <div class="when">ovaj tjedan</div>
+        <h3>WSL2 + Docker</h3>
+        <p>Windows: <code>wsl --install</code>, Docker Desktop s WSL integracijom, 4 GB RAM.</p>
+      </div>
+      <div class="stop">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div>
+        <div class="when">ovaj tjedan</div>
+        <h3>Alati</h3>
+        <p>git · kubectl · kind · helm · argocd · ansible · trivy · python3</p>
+      </div>
+      <div class="stop">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M10.8 12.2 20 3M17 6l3 3M15 8l2 2"/></svg></div>
+        <div class="when">prije vježbe</div>
+        <h3>Git + SSH ključ</h3>
+        <p><code>ssh -T git@github.com</code> → „Hi username!”<br><code>make check</code> → „Sve je spremno.”</p>
+      </div>
+      <div class="stop last">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div class="when">na vježbi</div>
+        <h3>Tvoj repo</h3>
+        <p>privatni <code>praktikum-prezime</code> iz predloška, nastavnik kao collaborator, <code>make cluster-up</code></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEMESTAR -->
+  <section>
+    <div class="label">Semestar u jednoj slici — svaki tjedan novi sloj na istom projektu</div>
+    <div class="weeks">
+      <div class="w s"><span class="n">1</span><span class="t">Setup</span></div>
+      <div class="w a"><span class="n">2</span><span class="t">Linux, bash</span></div>
+      <div class="w a"><span class="n">3</span><span class="t">Git, PR</span></div>
+      <div class="w a"><span class="n">4</span><span class="t">Docker</span></div>
+      <div class="w a"><span class="n">5</span><span class="t">Compose</span></div>
+      <div class="w a"><span class="n">6</span><span class="t">CI</span></div>
+      <div class="w a cp"><span class="n">7</span><span class="t">CD<br>GHCR</span></div>
+      <div class="w b"><span class="n">8</span><span class="t">IaC</span></div>
+      <div class="w b"><span class="n">9</span><span class="t">Ansible</span></div>
+      <div class="w b"><span class="n">10</span><span class="t">K8s</span></div>
+      <div class="w b"><span class="n">11</span><span class="t">Helm<br>Argo CD</span></div>
+      <div class="w b"><span class="n">12</span><span class="t">Monito-<br>ring</span></div>
+      <div class="w b cp"><span class="n">13</span><span class="t">Dev-<br>SecOps</span></div>
+      <div class="w f"><span class="n">14</span><span class="t">Incident<br>post-<br>mortem</span></div>
+      <div class="w f"><span class="n">15</span><span class="t">Obrana</span></div>
+    </div>
+    <div class="phases">
+      <div style="border-color:#7b8496">jednom</div>
+      <div style="border-color:var(--teal)">kod → image koji se sam builda i objavi</div>
+      <div style="border-color:var(--violet)">image → Kubernetes, monitoring, security</div>
+      <div style="border-color:var(--amber)">završetak</div>
+    </div>
+    <div class="cpnote"><b>Crveni okvir = checkpoint.</b> U 7. i 13. tjednu na <code>main</code> staviš git tag <code>checkpoint-1</code> / <code>checkpoint-2</code> — ocjenjuje se stanje na tagu u trenutku roka.</div>
+  </section>
+
+  <div class="row">
+    <!-- TJEDNI KRUG -->
+    <section class="box">
+      <div class="label">Svaki tjedan isti krug (2.–14.)</div>
+      <div class="loop">
+        <div class="ls"><b>Predavanje</b><span>zašto — teorija</span></div>
+        <div class="ls"><b>Vježbe</b><span>nastavnik uživo na demo-appu</span></div>
+        <div class="ls"><b>Nova grana</b><span><code>git switch -c lab-XX-…</code></span></div>
+        <div class="ls"><b>Commit + push</b><span>nikad izravno na <code>main</code></span></div>
+        <div class="ls"><b>Pull request</b><span>labela <code>lab-XX</code> + PR template</span></div>
+        <div class="ls"><b>CI zelen → merge</b><span>mergeaš sam (CI od 6. tj.)</span></div>
+      </div>
+      <div class="deadline"><b>Rok:</b> početak sljedećeg termina — računa se <b>otvaranje</b> PR-a. Zapeo si? Lekcija u <code>docs/</code> → <code>git checkout week-XX</code> u demo-appu → forum.</div>
+    </section>
+
+    <!-- BODOVI -->
+    <section class="box">
+      <div class="label">Bodovi (100)</div>
+      <div class="bar">
+        <div style="width:30%;background:var(--teal)">30</div>
+        <div style="width:10%;background:#c0392b">10</div>
+        <div style="width:10%;background:#d9645a">10</div>
+        <div style="width:30%;background:var(--violet)">30</div>
+        <div style="width:20%;background:var(--amber);color:var(--navy)">20</div>
+      </div>
+      <div class="legend">
+        <div><i style="background:var(--teal)"></i>labovi (10 od 13)</div>
+        <div><i style="background:#c0392b"></i>checkpoint 1</div>
+        <div><i style="background:var(--violet)"></i>završna predaja</div>
+        <div><i style="background:#d9645a"></i>checkpoint 2</div>
+        <div><i style="background:var(--amber)"></i>obrana</div>
+      </div>
+      <div class="label" style="margin-bottom:6px">Za prolaz</div>
+      <div class="pass">
+        <div><b>≥ 70 %</b><span>prisutnosti (max 4 izostanka)</span></div>
+        <div><b>≥ 15/30</b><span>iz labova</span></div>
+        <div><b>≥ 25/50</b><span>projekt + obrana</span></div>
+        <div><b>≥ 50/100</b><span>ukupno</span></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PRAVILA -->
+  <section>
+    <div class="label">Zlatna pravila</div>
+    <div class="rules">
+      <div class="rule r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6l2 2h10v10H3z"/><path d="M9 13l6 4M15 13l-6 4"/></svg><div><b>Repo u <code>~/</code>, ne <code>/mnt/c</code></b><span>na Windows disku je WSL višestruko sporiji</span></div></div>
+      <div class="rule v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.5L20 11l-5.5 2.5L12 19l-2.5-5.5L4 11l5.5-2.5z"/></svg><div><b>AI da, ali u AI log</b><span>svaki značajniji AI kod ide u <code>docs/ai-log.md</code></span></div></div>
+      <div class="rule r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><div><b>Secreti nikad u git ni AI</b><span>lozinke, tokeni, <code>.env</code> — procurio? odmah ga opozovi</span></div></div>
+      <div class="rule t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/></svg><div><b>Objasni svaku liniju</b><span>što ne znaš objasniti na obrani, ne nosi bodove</span></div></div>
+      <div class="rule a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Aplikacija do kraja 2. tj.</b><span>tko prvi prijavi, taj dobije — biraj jednostavnu ★</span></div></div>
+      <div class="rule t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div><b>Pitaj na forumu</b><span>cijela greška kao tekst + što si već probao</span></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Detalji: <code>docs/ocekivanja.md</code> · <code>docs/hodogram.md</code> · vodič „Priprema za prvu vježbu”</span>
+    <span>Predavanja: R. Karlović · Vježbe: V. Luk</span>
+  </footer>
+</div>
+</body>
+</html>

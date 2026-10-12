@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<title>Priprema za prvu vježbu</title>
+<style>
+  @page { size: A4; margin: 16mm 16mm 18mm 16mm; }
+  :root {
+    --ink: #14213d; --muted: #5b6475; --line: #dfe3ea; --bg: #ffffff;
+    --navy: #14213d; --teal: #0f7c80; --teal-soft: #e3f3f2;
+    --amber: #e09f1f; --amber-soft: #fdf3dc; --red: #c0392b; --red-soft: #fbe9e7;
+    --code-bg: #f3f5f8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    font-size: 9.8pt; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  h1, h2, h3 { line-height: 1.2; margin: 0; }
+  h2 { font-size: 17pt; margin: 0 0 4mm; padding-bottom: 2mm; border-bottom: 2px solid var(--teal); }
+  h2 .num { color: var(--teal); margin-right: 2mm; }
+  h3 { font-size: 11.5pt; margin: 5mm 0 2mm; }
+  p { margin: 0 0 2.5mm; }
+  ul, ol { margin: 0 0 3mm; padding-left: 5.5mm; }
+  li { margin-bottom: 1mm; }
+  code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 8.8pt; background: var(--code-bg); padding: 0.2mm 1.2mm; border-radius: 1mm; }
+  pre { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 8.6pt; line-height: 1.45; background: var(--navy); color: #e8edf5;
+    padding: 3mm 4mm; border-radius: 2mm; margin: 0 0 3mm; white-space: pre-wrap; break-inside: avoid; }
+  pre .c { color: #8fb3c9; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 3mm; font-size: 9.6pt; break-inside: avoid; }
+  th { text-align: left; background: var(--teal-soft); color: var(--navy); font-weight: 600; }
+  th, td { padding: 1.6mm 2.4mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .cover { break-after: page; }
+  section.page + section.page { margin-top: 8mm; }
+  h2 { break-after: avoid; }
+  h3 { break-after: avoid; }
+  a { color: var(--teal); text-decoration: none; }
+
+  /* naslovnica */
+  .cover { height: 262mm; display: flex; flex-direction: column; justify-content: space-between; }
+  .cover .top { background: var(--navy); color: #fff; border-radius: 4mm; padding: 14mm 12mm 12mm; }
+  .cover .kicker { font-size: 10pt; letter-spacing: 0.12em; text-transform: uppercase; color: #9fd6d3; margin-bottom: 6mm; }
+  .cover h1 { font-size: 34pt; font-weight: 800; letter-spacing: -0.01em; }
+  .cover .sub { font-size: 13pt; color: #cfd8e6; margin-top: 4mm; max-width: 140mm; }
+  .cover .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 10mm; font-size: 9.5pt; color: #cfd8e6; }
+  .cover .meta b { display: block; color: #fff; font-size: 10.5pt; }
+  .tldr { border: 2px solid var(--amber); background: var(--amber-soft); border-radius: 3mm; padding: 6mm 7mm; }
+  .tldr h3 { margin-top: 0; font-size: 13pt; }
+  .tldr ol { margin: 0; font-size: 10.5pt; }
+  .tldr li { margin-bottom: 1.6mm; }
+  .cover .foot { font-size: 9pt; color: var(--muted); }
+
+  /* blokovi */
+  .callout { border-left: 4px solid var(--teal); background: var(--teal-soft); padding: 2.5mm 4mm; border-radius: 0 2mm 2mm 0; margin: 0 0 3mm; break-inside: avoid; }
+  .callout.warn { border-color: var(--amber); background: var(--amber-soft); }
+  .callout.stop { border-color: var(--red); background: var(--red-soft); }
+  .callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .card { border: 1px solid var(--line); border-radius: 2.5mm; padding: 3.5mm 4mm; break-inside: avoid; }
+  .card h3 { margin-top: 0; }
+  .check { list-style: none; padding-left: 0; }
+  .check li { padding-left: 6.5mm; position: relative; }
+  .check li::before { content: ""; position: absolute; left: 0; top: 1.1mm; width: 3.4mm; height: 3.4mm; border: 1.4px solid var(--teal); border-radius: 0.8mm; background: #fff; }
+  .step { display: grid; grid-template-columns: 10mm 1fr; gap: 3mm; margin-bottom: 4mm; break-inside: avoid; }
+  .step .n { width: 9mm; height: 9mm; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 11pt; }
+  .step h3 { margin-top: 1.5mm; }
+  .tag { display: inline-block; font-size: 8pt; font-weight: 600; padding: 0.3mm 2mm; border-radius: 10mm; background: var(--amber-soft); color: #8a5a00; margin-left: 1.5mm; vertical-align: 1px; }
+  .tag.teal { background: var(--teal-soft); color: var(--teal); }
+  .small { font-size: 9pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. NASLOVNICA ============ -->
+<section class="page cover">
+  <div class="top">
+    <div class="kicker">Praktikum · DevOps i infrastruktura · 2026./27.</div>
+    <h1>Priprema za<br>prvu vježbu</h1>
+    <div class="sub">Što napraviti, instalirati i pročitati prije nego što sjedneš za računalo na prvom terminu vježbi.</div>
+    <div class="meta">
+      <div><b>Predavanja (teorija)</b>Ratomir Karlović, mag. inf.</div>
+      <div><b>Vježbe (praksa)</b>Vanja Luk, mag. inf.</div>
+      <div><b>Gdje su materijali</b>e-učenje i repozitorij kolegija <code style="background:#24345a;color:#fff">praktikum-demo-app</code></div>
+      <div><b>Gdje se pitaju pitanja</b>forum kolegija na e-učenju</div>
+    </div>
+  </div>
+
+  <div class="tldr">
+    <h3>Ako pročitaš samo ovo — pet stvari prije prve vježbe</h3>
+    <ol>
+      <li><b>Prijavi se za GitHub Education odmah.</b> Odobrenje traje nekoliko dana, a pogodnosti stižu do 72 h nakon toga. → pogl. 2</li>
+      <li><b>Windows: instaliraj WSL2 (Ubuntu) i Docker Desktop.</b> Traže admin prava i restart, to se ne radi na satu. → pogl. 3</li>
+      <li><b>Instaliraj alate</b> (git, docker, kubectl, kind, helm, argocd, ansible, trivy, python3) tako da <code>make check</code> prođe. → pogl. 3–4</li>
+      <li><b>Postavi git i SSH ključ</b> i provjeri <code>ssh -T git@github.com</code>. → pogl. 4</li>
+      <li><b>Pročitaj <code>docs/ocekivanja.md</code></b> i prolistaj popis projekata — aplikaciju biraš do kraja 2. tjedna, tko prvi prijavi, taj dobije. → pogl. 1 i 5</li>
+    </ol>
+  </div>
+
+  <div class="foot">Ovaj vodič sažima <code>ocekivanja.md</code>, <code>hodogram.md</code>, <code>silabus.md</code>, <code>github-education.md</code> i <code>git-cheatsheet.md</code> iz repozitorija kolegija. Kad se nešto razlikuje, vrijede ti dokumenti.</div>
+</section>
+
+<!-- ============ 2. KOLEGIJ UKRATKO ============ -->
+<section class="page">
+  <h2><span class="num">1</span>Kolegij u dvije minute</h2>
+
+  <p>Cijeli semestar radiš <b>jedan individualni projekt</b>: jednostavnu aplikaciju (API + baza + Redis) oko koje tjedan po tjedan gradiš infrastrukturu — skripte, Git workflow, Docker, Compose, CI/CD, Terraform, Ansible, Kubernetes, Helm, Argo CD, monitoring i security. Na kraju imaš aplikaciju koja se sama builda, testira i deploya na Kubernetes.</p>
+
+  <div class="callout"><p><b>Ocjenjuje se infrastruktura, ne aplikacija.</b> Aplikacija smije biti jednostavna i smije biti generirana uz AI. Odaberi jednostavnu — svaka dodatna komponenta je još jedan Dockerfile, servis i Deployment koji može puknuti.</p></div>
+
+  <h3>Dva repozitorija</h3>
+  <table>
+    <tr><th>Repozitorij</th><th>Čiji je</th><th>Čemu služi</th></tr>
+    <tr><td><code>praktikum-demo-app</code></td><td>nastavnikov</td><td>ogledna aplikacija (URL shortener) koju gradimo uživo na vježbama. Stanje nakon svakog tjedna je tag <code>week-XX</code>. <b>Samo gledaš, ništa ne predaješ.</b></td></tr>
+    <tr><td><code>praktikum-&lt;prezime&gt;</code></td><td>tvoj, iz predloška <code>praktikum-project-template</code></td><td>tvoj projekt za cijeli semestar, <b>privatan</b>. Ovdje radiš i predaješ.</td></tr>
+  </table>
+
+  <h3>Ritam svakog tjedna (2.–14.)</h3>
+  <ol>
+    <li><b>Predavanje</b> — zašto nešto radimo (teorija).</li>
+    <li><b>Vježbe</b> — nastavnik isti korak uživo napravi na demo-appu, ti odmah kreneš na svom projektu.</li>
+    <li><b>Rad na novoj grani</b> <code>lab-XX-naziv</code>, nikad izravno na <code>main</code>.</li>
+    <li><b>Pull request</b> prema <code>main</code> s labelom <code>lab-XX</code> i ispunjenim PR templateom. Od 6. tjedna mora proći CI. Mergeaš sam.</li>
+    <li><b>Rok:</b> početak sljedećeg termina. Računa se trenutak <b>otvaranja</b> PR-a.</li>
+  </ol>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Bodovanje</h3>
+      <table style="margin:0">
+        <tr><td>Labovi (10 najboljih od 13 × 3 b)</td><td style="text-align:right"><b>30</b></td></tr>
+        <tr><td>Checkpoint 1 (7. tj.)</td><td style="text-align:right"><b>10</b></td></tr>
+        <tr><td>Checkpoint 2 (13. tj.)</td><td style="text-align:right"><b>10</b></td></tr>
+        <tr><td>Završna predaja (15. tj.)</td><td style="text-align:right"><b>30</b></td></tr>
+        <tr><td>Obrana (15. tj.)</td><td style="text-align:right"><b>20</b></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Za prolaz kroz semestar</h3>
+      <ul class="check" style="margin:0">
+        <li>≥ 70 % prisutnosti (najviše <b>4 izostanka</b> od 15)</li>
+        <li>≥ <b>15 / 30</b> bodova iz labova</li>
+        <li>≥ <b>25 / 50</b> iz projekta, uz obranu</li>
+        <li>ukupno ≥ <b>50 / 100</b></li>
+      </ul>
+      <p class="small" style="margin-top:2mm">Ocjene: 50–62,9 dovoljan · 63–75,9 dobar · 76–88,9 vrlo dobar · 89–100 izvrstan</p>
+    </div>
+  </div>
+
+  <h3>AI alati — dopušteni, uz tri pravila</h3>
+  <ul>
+    <li>Svako <b>značajnije</b> korištenje (AI je napisao ili bitno promijenio kod, konfiguraciju ili dijagnozu) zapišeš u <code>docs/ai-log.md</code> i označiš u PR templateu.</li>
+    <li>Na obrani moraš objasniti <b>svaku liniju</b> koju predaš. Što ne znaš objasniti, ne nosi bodove.</li>
+    <li><b>Nikad</b> ne lijepi u AI lozinke, tokene, <code>.env</code> datoteke ili logove sa secretima.</li>
+  </ul>
+  <p class="small">Nedeklarirani AI kod tretira se kao predaja tuđeg rješenja. Sav rad je individualan — o konceptima smijete razgovarati, kod i konfiguraciju pišeš sam.</p>
+</section>
+
+<!-- ============ 3. GITHUB ============ -->
+<section class="page">
+  <h2><span class="num">2</span>GitHub račun i GitHub Education <span class="tag">napravi danas</span></h2>
+
+  <p>Student Developer Pack je besplatan i daje GitHub Pro (branch protection na privatnom repou, više minuta za Actions). <b>Nije uvjet da počneš raditi</b> — sve radi i s besplatnim računom — ali prijavu pošalji odmah jer pregled traje nekoliko dana.</p>
+
+  <h3>Prije prijave: sredi račun (10 min)</h3>
+  <ul class="check">
+    <li><b>Ime i prezime na profilu</b> (Settings → Public profile → Name) — točno kako piše na dokumentu koji prilažeš.</li>
+    <li><b>Studentski e-mail dodan i potvrđen</b> (Settings → Emails).</li>
+    <li><b>2FA uključen</b> (Settings → Password and authentication) — aplikacija za autentikaciju. Spremi recovery kodove.</li>
+    <li><b>Billing information</b> (Settings → Billing and plans): ime i adresa. <b>Kartica ne treba.</b></li>
+  </ul>
+
+  <h3>Prijava (5 min)</h3>
+  <ol>
+    <li><b>education.github.com/pack</b> → Sign up for Student Developer Pack → Get student benefits → uloga <b>Student</b>.</li>
+    <li>Odaberi studentski e-mail i školu s popisa: <b>Sveučilište Jurja Dobrile u Puli</b> / <i>Juraj Dobrila University of Pula</i>.</li>
+    <li><b>Dopusti lokaciju</b> u pregledniku i <b>isključi VPN</b>. Najveća šansa: prijavi se s fakulteta, na fakultetskoj mreži.</li>
+    <li>Dokaz o studiranju slikaj <b>kamerom uživo</b> kroz prijavu.</li>
+  </ol>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Dokaz mora pokazati</h3>
+      <ul style="margin:0">
+        <li>ime i prezime</li>
+        <li>puni naziv sveučilišta</li>
+        <li>datum tekuće akademske godine (2026./27.)</li>
+      </ul>
+      <p class="small" style="margin:2mm 0 0">Najbolje: potvrda o upisu iz Studomata ili e-Građana. X-ica samo uz dokument s datumom.</p>
+    </div>
+    <div class="card">
+      <h3>Dokument na hrvatskom?</h3>
+      <p class="small" style="margin-bottom:1.5mm">Dodaj kratak prijevod bez dijakritika:</p>
+<pre style="margin:0;font-size:8pt">Certificate of enrollment
+Name: Ivana Horvat
+University: Juraj Dobrila University of Pula,
+  Faculty of Informatics
+Academic year: 2026/2027, 3rd year</pre>
+    </div>
+  </div>
+
+  <h3 style="margin-top:4mm">Odbijeno? Najčešći razlozi</h3>
+  <table>
+    <tr><th>Razlog</th><th>Popravak</th></tr>
+    <tr><td>Ime na profilu ≠ ime na dokumentu</td><td>uskladi Name na profilu i u billing informacijama</td></tr>
+    <tr><td>Nema datuma tekuće godine</td><td>priloži potvrdu o upisu za 2026./27.</td></tr>
+    <tr><td>Mutna slika / ne vidi se sveučilište</td><td>novi, oštar snimak cijelog dokumenta</td></tr>
+    <tr><td>Lokacija nije potvrđena</td><td>isključi VPN, dopusti lokaciju, probaj Chrome ili se prijavi s fakulteta</td></tr>
+  </table>
+  <p class="small">Ponovno se prijavi tek kad nešto promijeniš — ista prijava bit će opet odbijena. Ako do 3. tjedna nemaš odobrenje, javi se nastavniku.</p>
+</section>
+
+<!-- ============ 4. RACUNALO I INSTALACIJA ============ -->
+<section class="page">
+  <h2><span class="num">3</span>Računalo i instalacija alata <span class="tag">prije vježbe</span></h2>
+
+  <div class="grid2" style="margin-bottom:3mm">
+    <div class="card">
+      <h3>Računalo</h3>
+      <ul style="margin:0">
+        <li><b>min. 8 GB RAM-a</b>, preporučeno 16 GB — u 11. i 12. tjednu istovremeno rade Kubernetes, Argo CD, Prometheus i tvoja aplikacija.</li>
+        <li>Ne treba cloud račun ni kartica, sve radi lokalno.</li>
+        <li>Računalo ne može? Javi se <b>u 1. tjednu</b> — radiš na laboratorijskom.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Što <code>make check</code> traži</h3>
+      <p style="margin-bottom:1.5mm"><code>git</code> <code>docker</code> <code>kubectl</code> <code>kind</code> <code>helm</code> <code>argocd</code> <code>ansible</code> <code>trivy</code> <code>python3</code></p>
+      <p style="margin:0">+ <b>Docker daemon mora raditi</b> (Docker Desktop pokrenut).<br>Uz to trebaju <code>make</code> i <code>curl</code>.</p>
+    </div>
+  </div>
+
+  <h3>Windows — sve radiš u WSL2 (Ubuntu)</h3>
+  <div class="step"><div class="n">1</div><div>
+    <b>WSL2.</b> PowerShell <b>kao administrator</b>, pa restart računala. Nakon restarta otvori „Ubuntu” i postavi korisničko ime i lozinku.
+<pre>wsl --install -d Ubuntu</pre></div></div>
+  <div class="step"><div class="n">2</div><div>
+    <b>Docker Desktop</b> (docker.com). Settings → General: <i>Use the WSL 2 based engine</i>. Settings → Resources → <b>WSL integration</b>: uključi <i>Ubuntu</i>. Resources → Memory: barem <b>4 GB</b>.
+  </div></div>
+  <div class="step"><div class="n">3</div><div>
+    <b>Alati u Ubuntu terminalu</b> — nastavak je isti kao za Linux (ispod).
+  </div></div>
+
+  <div class="callout stop"><p><b>Repozitorij uvijek kloniraj u Linux home (<code>~/</code>), nikad u <code>/mnt/c/...</code></b> — na Windows disku je sve višestruko sporije, a skripte se lome zbog line endinga.</p></div>
+
+  <h3>macOS</h3>
+  <p>Instaliraj <b>Docker Desktop</b> (verzija za tvoj čip: Apple Silicon ili Intel) i <b>Homebrew</b> (brew.sh), zatim:</p>
+<pre>brew install git make kubectl kind helm argocd ansible trivy python</pre>
+
+  <h3>Linux (i Ubuntu u WSL-u)</h3>
+  <p>Osnovni paketi preko <code>apt</code>:</p>
+<pre>sudo apt update
+sudo apt install -y git make curl build-essential python3 python3-pip python3-venv ansible</pre>
+  <p>Za <code>kubectl kind helm argocd trivy</code> najjednostavnije je preko Homebrewa (radi i na Linuxu i u WSL-u). Instalacijska skripta na kraju ispiše <i>Next steps</i> — pokreni naredbe koje piše, pa:</p>
+<pre>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+<span class="c"># nakon "Next steps" (dodaje brew u PATH):</span>
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc
+brew install kubectl kind helm argocd trivy</pre>
+  <p class="small">Na čistom Linuxu (bez Docker Desktopa) instaliraj Docker Engine po službenim uputama (docs.docker.com/engine/install) i dodaj se u grupu: <code>sudo usermod -aG docker $USER</code>, pa se odjavi i prijavi. Ako ti je draži drugi način instalacije alata (službeni binariji, apt repozitoriji), slobodno — bitno je da <code>make check</code> prođe.</p>
+</section>
+
+<!-- ============ 5. GIT + PROVJERA ============ -->
+<section class="page">
+  <h2><span class="num">4</span>Git, SSH ključ i provjera okruženja</h2>
+
+  <h3>Tko si (jednom, na svom računalu — u WSL-u na Windowsu)</h3>
+<pre>git config --global user.name "Ime Prezime"
+git config --global user.email "tvoj@email.com"      <span class="c"># isti mail kao na GitHubu</span>
+git config --global init.defaultBranch main
+git config --global pull.rebase false
+git config --global core.autocrlf input              <span class="c"># WSL: bez Windows line endinga</span>
+git config --global --list                           <span class="c"># provjera</span></pre>
+
+  <h3>SSH ključ — da ne upisuješ lozinku pri svakom pushu</h3>
+<pre>ssh-keygen -t ed25519 -C "tvoj@email.com"           <span class="c"># Enter, Enter, Enter</span>
+cat ~/.ssh/id_ed25519.pub                           <span class="c"># kopiraj cijeli red</span></pre>
+  <p>GitHub → avatar → <b>Settings → SSH and GPG keys → New SSH key</b> → zalijepi. Zatim:</p>
+<pre>ssh -T git@github.com
+<span class="c"># očekivano: Hi &lt;username&gt;! You've successfully authenticated...</span></pre>
+
+  <h3>Provjera da je sve spremno</h3>
+  <p>Svoj repozitorij radimo zajedno na vježbi. Okruženje možeš provjeriti već sada na oglednom repozitoriju — u njemu su isti <code>Makefile</code> i skripta:</p>
+<pre>cd ~
+git clone &lt;url-repozitorija-praktikum-demo-app&gt;
+cd praktikum-demo-app
+make check          <span class="c"># svaki alat [ok] + "Docker daemon radi" → "Sve je spremno."</span>
+make cluster-up     <span class="c"># diže lokalni Kubernetes (kind), ~1 min</span>
+kubectl get nodes   <span class="c"># jedan node u stanju Ready</span>
+make cluster-down   <span class="c"># obriši cluster, ne treba ti do 10. tjedna</span></pre>
+
+  <div class="callout warn"><p><b>Ako <code>make check</code> ne prođe</b>, zapiši točno koji red je <code>[--]</code> i donesi to na vježbu (ili pitaj na forumu prije). Na vježbi rješavamo zapinjanja, ali ne stignemo instalirati WSL i Docker od nule za cijelu grupu.</p></div>
+
+  <h3>Česti problemi</h3>
+  <table>
+    <tr><th>Poruka</th><th>Uzrok i rješenje</th></tr>
+    <tr><td><code>Cannot connect to the Docker daemon</code></td><td>Docker Desktop nije pokrenut, ili na Windowsu nije uključena WSL integracija za Ubuntu</td></tr>
+    <tr><td><code>port 80 is already in use</code></td><td>nešto drugo koristi port 80 (IIS, Skype, lokalni nginx) — ugasi ga</td></tr>
+    <tr><td><code>node(s) already exist ... "praktikum"</code></td><td>cluster već postoji: <code>make cluster-down</code> pa <code>make cluster-up</code></td></tr>
+    <tr><td>cluster je spor ili se ruši</td><td>Dockeru treba barem 4 GB RAM-a (Docker Desktop → Settings → Resources)</td></tr>
+    <tr><td><code>Permission denied (publickey)</code></td><td>SSH ključ nije dodan na GitHub ili kloniraš preko HTTPS-a — koristi <code>git@github.com:...</code></td></tr>
+    <tr><td><code>command not found: brew</code> / <code>kind</code></td><td>brew nije u PATH-u — pokreni <i>Next steps</i> iz instalacije pa otvori novi terminal</td></tr>
+  </table>
+</section>
+
+<!-- ============ 6. PRVA VJEZBA ============ -->
+<section class="page">
+  <h2><span class="num">5</span>Što radimo na prvoj vježbi</h2>
+
+  <p>Prvi tjedan radiš samo jednom. Cilj: od 2. tjedna imati okruženje koje radi i repozitorij u koji možeš predavati. Setup checklist <b>se ne boduje, ali bez njega ne možeš predati nijedan lab.</b></p>
+
+  <div class="step"><div class="n">1</div><div><h3>Repozitorij iz predloška</h3>
+    <code>praktikum-project-template</code> → <b>Use this template → Create a new repository</b>. Ime <code>praktikum-&lt;prezime&gt;</code> (mala slova, bez dijakritika, npr. <code>praktikum-horvat</code>). Vidljivost: <b>Private</b>. Jedan repo za cijeli semestar.</div></div>
+  <div class="step"><div class="n">2</div><div><h3>Nastavnik kao collaborator + predaja poveznice</h3>
+    Settings → Collaborators → Add people (GitHub username nastavnika dobiješ na terminu). Poveznicu na repo predaš na e-učenju.</div></div>
+  <div class="step"><div class="n">3</div><div><h3>Klon u Linux home</h3>
+    <code>git clone git@github.com:&lt;username&gt;/praktikum-&lt;prezime&gt;.git</code> u <code>~/</code>.</div></div>
+  <div class="step"><div class="n">4</div><div><h3><code>make check</code> i <code>make cluster-up</code></h3>
+    Ako obje prođu, okruženje je spremno za cijeli semestar.</div></div>
+  <div class="step"><div class="n">5</div><div><h3>Ispuni „Moj projekt” u <code>README.md</code></h3>
+    I pogled na to kako će demo-app izgledati na kraju semestra.</div></div>
+
+  <div class="grid2" style="margin-top:2mm">
+    <div class="card">
+      <h3>Donesi na vježbu</h3>
+      <ul class="check" style="margin:0">
+        <li>svoje računalo + punjač</li>
+        <li>GitHub korisničko ime i lozinku, 2FA aplikaciju na mobitelu</li>
+        <li>Docker Desktop već pokrenut</li>
+        <li>rezultat <code>make check</code> (ili popis što ne radi)</li>
+        <li>2–3 aplikacije s popisa koje ti se sviđaju</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Pročitaj prije</h3>
+      <ul class="check" style="margin:0">
+        <li><code>docs/ocekivanja.md</code> — <b>cijeli</b></li>
+        <li><code>docs/hodogram.md</code> — semestar u dijagramima</li>
+        <li><code>docs/popis-projekata.md</code></li>
+        <li><code>docs/git-cheatsheet.md</code>, poglavlja 1–3</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Odabir aplikacije — rok kraj 2. tjedna</h3>
+  <ul>
+    <li>Minimum: <b>API + baza (PostgreSQL) + Redis</b>, <code>/health</code> koji provjerava obje veze, nekoliko testova i nešto mjerljivo za monitoring.</li>
+    <li><b>Tko prvi prijavi, taj dobije</b> — dvoje ne mogu imati istu aplikaciju. Vlastiti prijedlog mora biti odobren do istog roka.</li>
+    <li>★ aplikacije su najsigurniji izbor. Cijeli stack mora raditi s 4 GB RAM-a; arhitektura mora stati na jedan slajd.</li>
+    <li>Jezik i framework biraš sam. Frontend nije obavezan. Ako ti kod aplikacije stvarno ne ide, javi se do kraja 2. tjedna i dobit ćeš gotovu.</li>
+  </ul>
+
+  <h3>Kad zapneš — redom</h3>
+  <ol>
+    <li>lekcija tog tjedna u <code>docs/</code> i README mape s kojom radiš,</li>
+    <li>stanje demo-appa nakon tog tjedna: <code>git checkout week-XX</code>,</li>
+    <li>forum kolegija s <b>pet stavki</b>: što pokušavaš · što očekuješ · što se stvarno dogodi (cijela greška kao tekst, ne slika mobitelom) · što si već probao · poveznica na commit/PR.</li>
+  </ol>
+  <p class="small">Osobne stvari (izostanci, zdravlje) — mailom nastavniku. Očekivani samostalni rad: oko 8 sati tjedno.</p>
+</section>
+
+</body>
+</html>

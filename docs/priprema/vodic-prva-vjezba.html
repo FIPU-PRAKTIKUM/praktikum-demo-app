@@ -233,7 +233,7 @@ Academic year: 2026/2027, 3rd year</pre>
     <b>WSL2.</b> PowerShell <b>kao administrator</b>, pa restart računala. Nakon restarta otvori „Ubuntu” i postavi korisničko ime i lozinku.
 <pre>wsl --install -d Ubuntu</pre></div></div>
   <div class="step"><div class="n">2</div><div>
-    <b>Docker Desktop</b> (docker.com). Settings → General: <i>Use the WSL 2 based engine</i>. Settings → Resources → <b>WSL integration</b>: uključi <i>Ubuntu</i>. Resources → Memory: barem <b>4 GB</b>.
+    <b>Docker Desktop</b> (docker.com). Settings → General: <i>Use the WSL 2 based engine</i>. Settings → Resources → <b>WSL integration</b>: uključi <i>Ubuntu</i>. Memoriju Dockeru daje WSL — po defaultu pola RAM-a (na laptopu s 8 GB to su 4 GB, dovoljno).
   </div></div>
   <div class="step"><div class="n">3</div><div>
     <b>Alati u Ubuntu terminalu</b> — nastavak je isti kao za Linux (ispod).
@@ -243,7 +243,8 @@ Academic year: 2026/2027, 3rd year</pre>
 
   <h3>macOS</h3>
   <p>Instaliraj <b>Docker Desktop</b> (verzija za tvoj čip: Apple Silicon ili Intel) i <b>Homebrew</b> (brew.sh), zatim:</p>
-<pre>brew install git make kubectl kind helm argocd ansible trivy python</pre>
+<pre>brew install git kubectl kind helm argocd ansible trivy python</pre>
+  <p class="small"><code>make</code> stiže s Apple Command Line Tools, koje instalacija Homebrewa postavi sama. U Docker Desktopu: Settings → Resources → Memory barem <b>4 GB</b>.</p>
 
   <h3>Linux (i Ubuntu u WSL-u)</h3>
   <p>Osnovni paketi preko <code>apt</code>:</p>
@@ -294,7 +295,7 @@ make cluster-down   <span class="c"># obriši cluster, ne treba ti do 10. tjedna
     <tr><td><code>Cannot connect to the Docker daemon</code></td><td>Docker Desktop nije pokrenut, ili na Windowsu nije uključena WSL integracija za Ubuntu</td></tr>
     <tr><td><code>port 80 is already in use</code></td><td>nešto drugo koristi port 80 (IIS, Skype, lokalni nginx) — ugasi ga</td></tr>
     <tr><td><code>node(s) already exist ... "praktikum"</code></td><td>cluster već postoji: <code>make cluster-down</code> pa <code>make cluster-up</code></td></tr>
-    <tr><td>cluster je spor ili se ruši</td><td>Dockeru treba barem 4 GB RAM-a (Docker Desktop → Settings → Resources)</td></tr>
+    <tr><td>cluster je spor ili se ruši</td><td>Dockeru treba barem 4 GB RAM-a. Windows: u <code>%UserProfile%\.wslconfig</code> upiši <code>[wsl2]</code> i <code>memory=6GB</code>, pa <code>wsl --shutdown</code>. macOS: Docker Desktop → Resources → Memory</td></tr>
     <tr><td><code>Permission denied (publickey)</code></td><td>SSH ključ nije dodan na GitHub ili kloniraš preko HTTPS-a — koristi <code>git@github.com:...</code></td></tr>
     <tr><td><code>command not found: brew</code> / <code>kind</code></td><td>brew nije u PATH-u — pokreni <i>Next steps</i> iz instalacije pa otvori novi terminal</td></tr>
   </table>

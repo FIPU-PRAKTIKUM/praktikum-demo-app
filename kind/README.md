@@ -55,4 +55,4 @@ Node je Docker kontejner, pa njegovi portovi nisu automatski dostupni s tvog ra�
 | `Cannot connect to the Docker daemon` | Docker Desktop nije pokrenut, ili na Windowsu nije uključena WSL integracija |
 | `port 80 is already in use` | nešto drugo koristi port 80 (često IIS ili Skype na Windowsu, ili lokalni nginx); ugasi ga ili privremeno makni `extraPortMappings` |
 | `node(s) already exist for a cluster with the name "praktikum"` | cluster već postoji; `make cluster-down` pa ponovno `make cluster-up` |
-| cluster je spor ili se ruši | Dockeru treba barem 4 GB RAM-a (Docker Desktop → Settings → Resources) |
+| cluster je spor ili se ruši | Dockeru treba barem 4 GB RAM-a. **Windows (WSL2):** memoriju određuje WSL, po defaultu pola RAM-a računala; za više u `%UserProfile%\.wslconfig` upiši `[wsl2]` i `memory=6GB`, pa u PowerShellu `wsl --shutdown`. **macOS:** Docker Desktop → Settings → Resources → Memory |

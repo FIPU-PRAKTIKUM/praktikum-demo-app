@@ -28,10 +28,11 @@ Ovaj dokument odgovara na većinu pitanja koja se pojave tijekom semestra. **Pro
 
 **Da položiš kroz semestar, moraš:**
 
-1. prisustvovati na najmanje **70 % termina** (najviše 4 izostanka od 15),
-2. skupiti najmanje **15 od 30** bodova iz labova,
-3. skupiti najmanje **25 od 50** bodova iz projekta (checkpointi + završna predaja) i obraniti ga,
-4. skupiti ukupno najmanje **50 od 100** bodova.
+1. skupiti najmanje **15 od 30** bodova iz labova,
+2. skupiti najmanje **25 od 50** bodova iz projekta (checkpointi + završna predaja) i obraniti ga,
+3. skupiti ukupno najmanje **50 od 100** bodova.
+
+**Prisutnost nije obavezna** i ne utječe na prolaz. Ipak dođi kad možeš: na vježbama se uživo radi upravo ono što taj tjedan predaješ, a pitanja se najbrže riješe u laboratoriju.
 
 | Ocjena | Bodovi |
 | --- | --- |
@@ -190,7 +191,7 @@ AI log se **ne ocjenjuje po tome koliko si AI koristio**, nego po tome koliko si
 
 ## 8. Kako postaviti pitanje
 
-Pitanja postavljaj na **forumu kolegija na e-učenju**, ne privatnim porukama — odgovor će pomoći i drugima. Za osobne stvari (izostanci, zdravlje, dogovori) piši nastavniku mailom.
+Pitanja postavljaj na **forumu kolegija na e-učenju**, ne privatnim porukama — odgovor će pomoći i drugima. Za osobne stvari (zdravlje, dogovori) piši nastavniku mailom.
 
 **Prije nego što pitaš:**
 
@@ -236,7 +237,7 @@ Do kraja 3. tjedna uz javljanje nastavniku, ako nova aplikacija nije zauzeta. Po
 Javi se do kraja 2. tjedna i dobit ćeš gotovu jednostavnu aplikaciju; cijeli semestar radiš samo infrastrukturu oko nje. Bodovi se ne mijenjaju.
 
 **Propustio sam termin. Što sad?**
-Pogledaj lekciju u `docs/` i stanje ogledne aplikacije (`git checkout week-XX`, `git diff week-XX week-YY`). Lab predaješ u istom roku kao svi. Izostanak se računa u 30 % dopuštenih.
+Pogledaj lekciju u `docs/` i stanje ogledne aplikacije (`git checkout week-XX`, `git diff week-XX week-YY`). Lab predaješ u istom roku kao svi. Prisutnost nije obavezna, pa izostanak sam po sebi ne utječe na ocjenu, ali rok za lab vrijedi i kad nisi bio na terminu.
 
 **Mogu li popraviti lab nakon roka da dobijem više bodova?**
 Ne. Popravi ga svakako, jer sljedeći labovi grade na njemu, ali bodovi ostaju prema stanju u roku. Za to postoji pravilo 10 od 13.

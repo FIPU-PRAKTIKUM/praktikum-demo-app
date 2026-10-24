@@ -150,9 +150,10 @@ Obrana traje oko 15 minuta i ima tri dijela:
 
 ## Za prolaz
 
-- najmanje 70 % prisutnosti (najviše 4 izostanka)
 - najmanje 15 od 30 bodova iz labova
 - najmanje 25 od 50 bodova iz projekta, uz obranu
 - ukupno najmanje 50 od 100
+
+Prisutnost nije obavezna i ne utječe na prolaz. Ipak dođi kad možeš: na vježbama se uživo radi upravo ono što taj tjedan predaješ.
 
 Sve detaljno: [`ocekivanja.md`](ocekivanja.md) · tjedan po tjedan: [plan vježbi](../README.md#plan-vježbi)

@@ -167,10 +167,11 @@ Student može položiti kolegij putem kontinuiranog praćenja tijekom semestra i
 
 Da položi kolegij putem kontinuiranog praćenja, student mora:
 
-1. prisustvovati na najmanje 70% termina,
-2. ostvariti najmanje 50% bodova iz laboratorijskih zadataka,
-3. predati i obraniti projekt s najmanje 50% bodova projekta,
-4. ukupno ostvariti najmanje 50 od 100 bodova.
+1. ostvariti najmanje 50% bodova iz laboratorijskih zadataka,
+2. predati i obraniti projekt s najmanje 50% bodova projekta,
+3. ukupno ostvariti najmanje 50 od 100 bodova.
+
+Prisutnost na predavanjima i vježbama nije obavezna i ne utječe na prolaznost. Preporučuje se ipak dolaziti: na vježbama se uživo radi ono što se taj tjedan predaje kao laboratorijski zadatak.
 
 Student koji ne zadovolji uvjete kontinuiranog praćenja predaje doradu projekta i pristupa usmenoj obrani na ispitnom roku.
 

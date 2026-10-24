@@ -109,7 +109,7 @@
   <h3>Dva repozitorija</h3>
   <table>
     <tr><th>Repozitorij</th><th>Čiji je</th><th>Čemu služi</th></tr>
-    <tr><td><code>praktikum-demo-app</code></td><td>nastavnikov</td><td>ogledna aplikacija (URL shortener) koju gradimo uživo na vježbama. Stanje nakon svakog tjedna je tag <code>week-XX</code>. <b>Samo gledaš, ništa ne predaješ.</b></td></tr>
+    <tr><td><code>praktikum-demo-app</code><br><span class="small">github.com/vanjaluk8/<br>praktikum-demo-app</span></td><td>nastavnikov</td><td>ogledna aplikacija (URL shortener) koju gradimo uživo na vježbama. Stanje nakon svakog tjedna je tag <code>week-XX</code>. <b>Samo gledaš, ništa ne predaješ.</b></td></tr>
     <tr><td><code>praktikum-&lt;prezime&gt;</code></td><td>tvoj, iz predloška <code>praktikum-project-template</code></td><td>tvoj projekt za cijeli semestar, <b>privatan</b>. Ovdje radiš i predaješ.</td></tr>
   </table>
 
@@ -280,7 +280,7 @@ cat ~/.ssh/id_ed25519.pub                           <span class="c"># kopiraj ci
   <h3>Provjera da je sve spremno</h3>
   <p>Svoj repozitorij radimo zajedno na vježbi. Okruženje možeš provjeriti već sada na oglednom repozitoriju — u njemu su isti <code>Makefile</code> i skripta:</p>
 <pre>cd ~
-git clone &lt;url-repozitorija-praktikum-demo-app&gt;
+git clone https://github.com/vanjaluk8/praktikum-demo-app.git
 cd praktikum-demo-app
 make check          <span class="c"># svaki alat [ok] + "Docker daemon radi" → "Sve je spremno."</span>
 make cluster-up     <span class="c"># diže lokalni Kubernetes (kind), ~1 min</span>

@@ -278,7 +278,7 @@ cat ~/.ssh/id_ed25519.pub                           <span class="c"># kopiraj ci
 <span class="c"># očekivano: Hi &lt;username&gt;! You've successfully authenticated...</span></pre>
 
   <h3>Provjera da je sve spremno</h3>
-  <p>Svoj repozitorij radimo zajedno na vježbi. Okruženje možeš provjeriti već sada na oglednom repozitoriju — u njemu su isti <code>Makefile</code> i skripta:</p>
+  <div class="callout"><p><b>Svoj repozitorij radimo zajedno na prvom satu</b> (pogl. 5). Da bi alate mogao provjeriti već sada, privremeno kloniraj <b>nastavnikov ogledni repo</b> <code>praktikum-demo-app</code> — u njemu su isti <code>Makefile</code> i skripta. <b>To nije tvoj repo:</b> u njemu ne radiš i ništa ne predaješ.</p></div>
 <pre>cd ~
 git clone https://github.com/vanjaluk8/praktikum-demo-app.git
 cd praktikum-demo-app
@@ -311,8 +311,8 @@ make cluster-down   <span class="c"># obriši cluster, ne treba ti do 10. tjedna
     <code>praktikum-project-template</code> → <b>Use this template → Create a new repository</b>. Ime <code>praktikum-&lt;prezime&gt;</code> (mala slova, bez dijakritika, npr. <code>praktikum-horvat</code>). Vidljivost: <b>Private</b>. Jedan repo za cijeli semestar.</div></div>
   <div class="step"><div class="n">2</div><div><h3>Nastavnik kao collaborator + predaja poveznice</h3>
     Settings → Collaborators → Add people (GitHub username nastavnika dobiješ na terminu). Poveznicu na repo predaš na e-učenju.</div></div>
-  <div class="step"><div class="n">3</div><div><h3>Klon u Linux home</h3>
-    <code>git clone git@github.com:&lt;username&gt;/praktikum-&lt;prezime&gt;.git</code> u <code>~/</code>.</div></div>
+  <div class="step"><div class="n">3</div><div><h3>Klon svog repoa u Linux home</h3>
+    <code>git clone git@github.com:&lt;username&gt;/praktikum-&lt;prezime&gt;.git</code> u <code>~/</code>. Od sada radiš <b>samo u ovom repou</b>. Klon oglednog repoa iz pogl. 4 smiješ ostaviti (trebat će ti za <code>git checkout week-XX</code>) ili obrisati.</div></div>
   <div class="step"><div class="n">4</div><div><h3><code>make check</code> i <code>make cluster-up</code></h3>
     Ako obje prođu, okruženje je spremno za cijeli semestar.</div></div>
   <div class="step"><div class="n">5</div><div><h3>Ispuni „Moj projekt” u <code>README.md</code></h3>

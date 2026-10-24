@@ -11,6 +11,36 @@ Na kraju ovog tjedna trebao bi znati:
 
 ---
 
+## 0. Prije svega: digni API
+
+Da bi imao što provjeravati, treba ti servis koji radi. U svom repozitoriju već ga imaš: placeholder API u `app/main.py` s endpointom `/health`. Treba mu samo Python okruženje.
+
+**Jednom** (u rootu svog repozitorija):
+
+```bash
+make install                  # napravi .venv i instalira ovisnosti iz app/requirements-dev.txt
+source .venv/bin/activate     # uključi venv; u promptu se pojavi (.venv)
+make run                      # API na http://localhost:8000 — ovaj terminal ostavi otvoren
+```
+
+U **drugom terminalu** provjeri:
+
+```bash
+curl http://localhost:8000/health
+# {"status":"ok","host":"..."}
+```
+
+Ugasiš ga s `Ctrl+C` u terminalu gdje radi.
+
+**Na što paziti:**
+
+- `source .venv/bin/activate` ponavljaš **u svakom novom terminalu** u kojem pokrećeš `make run` ili `make test`. Bez toga dobiješ `uvicorn: command not found`.
+- `pip install` **bez venva** na Ubuntu 24.04 (default u WSL-u) javlja `externally-managed-environment`. To nije greška u tvom repou — sustav ne dopušta instalaciju Python paketa mimo `apt`-a. Zato venv.
+- `python3 -m venv` javlja `ensurepip is not available`? Instaliraj ga: `sudo apt install -y python3-venv`.
+- `.venv/` je u `.gitignore`, ne commitaš ga.
+
+---
+
 ## 1. Zašto health check?
 
 Servis može "raditi" (proces postoji) a da zapravo ne radi ništa korisno: zapeo je, izgubio vezu s bazom ili vraća greške. Zato svaki servis u našem projektu ima endpoint **`/health`** koji odgovara samo ako je servis stvarno spreman.
@@ -116,7 +146,7 @@ Napiši **vlastitu** bash skriptu za automatizaciju nečega korisnog u svom proj
 
 Ideje (ili smisli svoju):
 
-- backup baze u datoteku s datumom u imenu i brisanje backupa starijih od 7 dana,
+- backup baze u datoteku s datumom u imenu i brisanje backupa starijih od 7 dana (baza stiže tek u 3. tjednu — dotad možeš raditi backup bilo koje mape, npr. `docs/`),
 - čišćenje starih logova,
 - provjera zauzeća diska s upozorenjem iznad praga,
 - provjera jesu li instalirane sve potrebne verzije alata.

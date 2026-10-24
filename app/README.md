@@ -16,7 +16,8 @@ Do 3. tjedna ovdje je **placeholder API** iz predloška: jedan FastAPI servis s 
 ```
 app/
   main.py            # aplikacija
-  requirements.txt   # Python ovisnosti s verzijama
+  requirements.txt       # Python ovisnosti s verzijama
+  requirements-dev.txt   # + pytest i ruff za make test / make lint
   tests/
     test_health.py   # testovi koje pokreće `make test` i CI
 ```
@@ -42,10 +43,14 @@ def health() -> dict:
 ## Pokretanje i testovi
 
 ```bash
-make run     # API na http://localhost:8000, s automatskim reloadom
-make test    # testovi
-make lint    # provjera stila (ruff)
+make install                # jednom: napravi .venv i instaliraj ovisnosti
+source .venv/bin/activate   # u svakom novom terminalu
+make run                    # API na http://localhost:8000, s automatskim reloadom
+make test                   # testovi
+make lint                   # provjera stila (ruff)
 ```
+
+`requirements.txt` su ovisnosti aplikacije (idu u Docker image), a `requirements-dev.txt` dodaje alate za testove i lint (ne idu u image).
 
 Interaktivna dokumentacija API-ja: http://localhost:8000/docs
 

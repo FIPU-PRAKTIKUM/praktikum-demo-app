@@ -1,0 +1,4 @@
+# Alati za razvoj i testove (make test, make lint). Ne idu u Docker image.
+-r requirements.txt
+pytest==8.*
+ruff==0.*

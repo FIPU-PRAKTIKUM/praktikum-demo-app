@@ -174,7 +174,9 @@ Checkpointi: tag `checkpoint-1` u 7. tjednu i `checkpoint-2` u 13. tjednu stavlj
 ## Pokretanje
 
 ```bash
-make help   # popis svih naredbi
-make run    # API na http://localhost:8000
-make test   # testovi
+make help                   # popis svih naredbi
+make install                # jednom: .venv + ovisnosti
+source .venv/bin/activate   # u svakom novom terminalu
+make run                    # API na http://localhost:8000
+make test                   # testovi
 ```

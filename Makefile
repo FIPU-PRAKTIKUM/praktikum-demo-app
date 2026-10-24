@@ -1,4 +1,4 @@
-.PHONY: help check test lint run cluster-up cluster-down
+.PHONY: help check install test lint run cluster-up cluster-down
 
 CLUSTER := praktikum
 
@@ -7,6 +7,10 @@ help:            ## Popis naredbi
 
 check:           ## Provjeri jesu li svi alati instalirani
 	@bash scripts/check-env.sh
+
+install:         ## Napravi .venv i instaliraj ovisnosti (zatim: source .venv/bin/activate)
+	python3 -m venv .venv
+	.venv/bin/pip install -r app/requirements-dev.txt
 
 lint:            ## Lint Python koda
 	ruff check app

@@ -200,6 +200,18 @@ git blame datoteka               # tko je i kad promijenio svaki red
 
 ## 6. Tagovi i checkpointi
 
+**Tag je trajno ime za jedan commit.** Grana (`main`) se pomiče sa svakim novim commitom, a tag zauvijek pokazuje na isti commit. Zato je dobar za "snimku stanja": checkpoint na tvom repou, `week-XX` u oglednoj aplikaciji.
+
+```
+A ── B ── C ── D ── E   ← main (ide dalje)
+     ↑         ↑
+  week-01   week-02     (ostaju gdje su)
+```
+
+> **`git push` ne šalje tagove.** Tag postoji samo na tvom računalu dok ga izričito ne pushaš s `git push origin <ime-taga>`. Najčešći razlog "checkpoint nije predan".
+
+Na GitHubu su tagovi pod **Code → Tags**. Uz svaki tag GitHub sam nudi **Source code (zip / tar.gz)**: to je automatski arhiv koda u tom stanju, ne trebaš ga ni raditi ni predavati.
+
 Checkpoint 1 (7. tjedan) i checkpoint 2 (13. tjedan):
 
 ```bash

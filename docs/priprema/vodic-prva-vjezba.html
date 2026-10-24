@@ -89,7 +89,7 @@
     <ol>
       <li><b>Prijavi se za GitHub Education odmah.</b> Odobrenje traje nekoliko dana, a pogodnosti stižu do 72 h nakon toga. → pogl. 2</li>
       <li><b>Windows: instaliraj WSL2 (Ubuntu) i Docker Desktop.</b> Traže admin prava i restart, to se ne radi na satu. → pogl. 3</li>
-      <li><b>Instaliraj alate</b> (git, docker, kubectl, kind, helm, argocd, ansible, trivy, python3) tako da <code>make check</code> prođe. → pogl. 3–4</li>
+      <li><b>Instaliraj alate</b> (git, docker, kubectl, kind, helm, argocd, ansible, trivy, python3) i provjeri Docker s <code>docker run --rm hello-world</code>. → pogl. 3–4</li>
       <li><b>Postavi git i SSH ključ</b> i provjeri <code>ssh -T git@github.com</code>. → pogl. 4</li>
       <li><b>Pročitaj <code>docs/ocekivanja.md</code></b> i prolistaj popis projekata — aplikaciju biraš do kraja 2. tjedna, tko prvi prijavi, taj dobije. → pogl. 1 i 5</li>
     </ol>
@@ -277,17 +277,13 @@ cat ~/.ssh/id_ed25519.pub                           <span class="c"># kopiraj ci
 <pre>ssh -T git@github.com
 <span class="c"># očekivano: Hi &lt;username&gt;! You've successfully authenticated...</span></pre>
 
-  <h3>Provjera da je sve spremno</h3>
-  <div class="callout"><p><b>Svoj repozitorij radimo zajedno na prvom satu</b> (pogl. 5). Da bi alate mogao provjeriti već sada, privremeno kloniraj <b>nastavnikov ogledni repo</b> <code>praktikum-demo-app</code> — u njemu su isti <code>Makefile</code> i skripta. <b>To nije tvoj repo:</b> u njemu ne radiš i ništa ne predaješ.</p></div>
-<pre>cd ~
-git clone https://github.com/vanjaluk8/praktikum-demo-app.git
-cd praktikum-demo-app
-make check          <span class="c"># svaki alat [ok] + "Docker daemon radi" → "Sve je spremno."</span>
-make cluster-up     <span class="c"># diže lokalni Kubernetes (kind), ~1 min</span>
-kubectl get nodes   <span class="c"># jedan node u stanju Ready</span>
-make cluster-down   <span class="c"># obriši cluster, ne treba ti do 10. tjedna</span></pre>
+  <h3>Provjera prije sata: Docker</h3>
+  <p>Docker (i na Windowsu WSL integracija) najčešće zapinje, a za provjeru ne treba nikakav repo:</p>
+<pre>docker run --rm hello-world
+<span class="c"># očekivano: Hello from Docker! ...</span></pre>
+  <div class="callout"><p><b>Ostale alate provjeravamo na prvom satu</b>, u tvom repozitoriju: napraviš ga iz predloška, kloniraš i pokreneš <code>make check</code> (pogl. 5). To je točka nula — od nje radiš cijeli semestar.</p></div>
 
-  <div class="callout warn"><p><b>Ako <code>make check</code> ne prođe</b>, zapiši točno koji red je <code>[--]</code> i donesi to na vježbu (ili pitaj na forumu prije). Na vježbi rješavamo zapinjanja, ali ne stignemo instalirati WSL i Docker od nule za cijelu grupu.</p></div>
+  <div class="callout warn"><p><b>Ako <code>hello-world</code> ne prođe</b>, popravi to prije sata (Docker Desktop pokrenut? WSL integracija za Ubuntu uključena?) ili pitaj na forumu. Na vježbi rješavamo zapinjanja, ali ne stignemo instalirati WSL i Docker od nule za cijelu grupu.</p></div>
 
   <h3>Česti problemi</h3>
   <table>
@@ -312,9 +308,9 @@ make cluster-down   <span class="c"># obriši cluster, ne treba ti do 10. tjedna
   <div class="step"><div class="n">2</div><div><h3>Nastavnik kao collaborator + predaja poveznice</h3>
     Settings → Collaborators → Add people (GitHub username nastavnika dobiješ na terminu). Poveznicu na repo predaš na e-učenju.</div></div>
   <div class="step"><div class="n">3</div><div><h3>Klon svog repoa u Linux home</h3>
-    <code>git clone git@github.com:&lt;username&gt;/praktikum-&lt;prezime&gt;.git</code> u <code>~/</code>. Od sada radiš <b>samo u ovom repou</b>. Klon oglednog repoa iz pogl. 4 smiješ ostaviti (trebat će ti za <code>git checkout week-XX</code>) ili obrisati.</div></div>
+    <code>git clone git@github.com:&lt;username&gt;/praktikum-&lt;prezime&gt;.git</code> u <code>~/</code>. U ovom repou radiš cijeli semestar.</div></div>
   <div class="step"><div class="n">4</div><div><h3><code>make check</code> i <code>make cluster-up</code></h3>
-    Ako obje prođu, okruženje je spremno za cijeli semestar.</div></div>
+    U svom repou: <code>make check</code> mora ispisati „Sve je spremno.”, a <code>kubectl get nodes</code> jedan node u stanju Ready. Ako obje prođu, okruženje je spremno za cijeli semestar.</div></div>
   <div class="step"><div class="n">5</div><div><h3>Ispuni „Moj projekt” u <code>README.md</code></h3>
     I pogled na to kako će demo-app izgledati na kraju semestra.</div></div>
 
@@ -325,7 +321,7 @@ make cluster-down   <span class="c"># obriši cluster, ne treba ti do 10. tjedna
         <li>svoje računalo + punjač</li>
         <li>GitHub korisničko ime i lozinku, 2FA aplikaciju na mobitelu</li>
         <li>Docker Desktop već pokrenut</li>
-        <li>rezultat <code>make check</code> (ili popis što ne radi)</li>
+        <li>rezultat <code>docker run --rm hello-world</code></li>
         <li>2–3 aplikacije s popisa koje ti se sviđaju</li>
       </ul>
     </div>

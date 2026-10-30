@@ -17,6 +17,7 @@ Plan vježbi tjedan po tjedan je u [README-u repozitorija](../README.md#plan-vje
 
 | Dokument | Što je unutra |
 | --- | --- |
+| [`postupak-predaje.md`](postupak-predaje.md) | **svaki lab** — cijeli put od grane do mergea, redom po koracima |
 | [`github-education.md`](github-education.md) | kako aktivirati Student Developer Pack i što ako je prijava odbijena |
 | [`git-cheatsheet.md`](git-cheatsheet.md) | sve git i GitHub naredbe: postavljanje, predaja laba, grane, checkpointi, popravljanje grešaka |
 | [`../kind/README.md`](../kind/README.md) | lokalni Kubernetes cluster i česti problemi |

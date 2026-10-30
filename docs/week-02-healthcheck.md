@@ -151,6 +151,8 @@ Ideje (ili smisli svoju):
 - provjera zauzeća diska s upozorenjem iznad praga,
 - provjera jesu li instalirane sve potrebne verzije alata.
 
+**Gotov primjer:** [`scripts/backup-docs.sh`](../scripts/README.md#backup-docssh--linija-po-liniju) — backup `docs/` s datumom u imenu i čišćenjem starih arhiva, s objašnjenjem linija po liniju i svim kriterijima ispod.
+
 **Kriteriji prihvaćanja:**
 
 - [ ] `set -euo pipefail` na vrhu

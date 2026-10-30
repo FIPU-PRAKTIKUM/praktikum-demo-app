@@ -6,6 +6,7 @@ Pomoćne bash skripte za rad s projektom. Skripte ovdje su male, ali pišemo ih 
 | --- | --- | --- |
 | `check-env.sh` | 1 | provjerava jesu li instalirani svi alati za kolegij (`make check`) |
 | `healthcheck.sh` | 2 | provjerava `/health` svih servisa, zapisuje rezultat u log, vraća exit code |
+| `backup-docs.sh` | 2 | arhivira `docs/` s datumom u imenu, briše arhive starije od 7 dana |
 
 ---
 
@@ -111,6 +112,85 @@ Ispod je cijela skripta podijeljena u blokove. Brojevi redova odgovaraju datotec
 ```bash
 ./scripts/healthcheck.sh; echo "exit code: $?"
 ```
+
+---
+
+## `backup-docs.sh` — linija po liniju
+
+Drugi primjer za 2. tjedan. Ista pravila kao `healthcheck.sh`, ali rješava drugi tip zadatka: **backup s datumom u imenu i čišćenje starih kopija**. Dobar je uzor za `lab-02` jer pokazuje provjeru preduvjeta i sigurno ponovno pokretanje.
+
+### Redovi 1–5: zaglavlje
+
+```bash
+1  #!/usr/bin/env bash
+2  # Arhivira mapu docs/ u tar.gz s datumom u imenu i briše arhive starije od 7 dana.
+3  # Pokretanje:  ./scripts/backup-docs.sh
+4  # Exit code:   0 = arhiva je napravljena, 1 = greška (npr. ne postoji docs/)
+5  set -euo pipefail
+```
+
+Isto kao u `healthcheck.sh`: shebang, tri reda komentara (što radi, kako se pokreće, što znači exit code) i strict mode.
+
+### Redovi 7–9: konfiguracija
+
+```bash
+ 7  SRC="${SRC:-docs}"
+ 8  DEST="${DEST:-$HOME/praktikum-backup}"
+ 9  KEEP_DAYS="${KEEP_DAYS:-7}"
+```
+
+- Svaka postavka ima **default vrijednost**, pa skripta radi bez podešavanja, a mijenja se iz okruženja bez diranja koda:
+  ```bash
+  SRC=app DEST=/tmp/backup KEEP_DAYS=0 ./scripts/backup-docs.sh
+  ```
+- `KEEP_DAYS=0` u probi briše sve starije od 0 dana — najbrži način da vidiš čišćenje.
+
+### Redovi 11–14: provjera preduvjeta
+
+```bash
+11  if [ ! -d "$SRC" ]; then
+12    echo "GREŠKA: mapa '$SRC' ne postoji — pokreni skriptu iz korijena repozitorija." >&2
+13    exit 1
+14  fi
+```
+
+- Provjera ide **prije** bilo kakvog rada. Bolje je glasno pasti odmah nego napraviti praznu arhivu.
+- Poruka ide na **stderr** (`>&2`): stdout ostaje za strojni izlaz, a čovjek odmah vidi gdje je problem.
+- `exit 1` je signal koji razumiju cron i CI. Bez njega bi skripta "uspjela" iako ništa nije napravila.
+
+### Redovi 16–19: arhiva
+
+```bash
+16  mkdir -p "$DEST"
+17  ARCHIVE="$DEST/$(basename "$SRC")-$(date '+%F').tar.gz"
+18  tar -czf "$ARCHIVE" "$SRC"
+19  echo "$(date '+%F %T') backup OK: $ARCHIVE"
+```
+
+- `mkdir -p` ne pada ako mapa već postoji — zato drugo pokretanje ne pravi grešku.
+- `date '+%F'` u imenu daje `docs-2026-10-30.tar.gz`. Format **godina-mjesec-dan** sortira se ispravno i kao tekst.
+- Dvostruko pokretanje istog dana **prepiše** istu arhivu, zato je skripta sigurna za ponovno pokretanje.
+- `tar -czf`: `-c` stvori arhivu, `-z` gzip, `-f` piši u datoteku.
+
+### Red 21: čišćenje starih arhiva
+
+```bash
+21  find "$DEST" -name '*.tar.gz' -type f -mtime +"$KEEP_DAYS" -print -delete
+```
+
+- `-mtime +7` znači datoteke starije od 7 dana, a `-type f` preskače mape.
+- `-print -delete` prvo **ispiše** putanju, pa je obriše — u logu vidiš što je uklonjeno, a ne samo da je "nešto" nestalo.
+- `find` vraća 0 i kad ništa ne nađe, pa skripta ne pada kad nema što obrisati.
+
+### Red 23: rezultat
+
+```bash
+23  exit 0
+```
+
+Eksplicitan uspjeh. Ako `tar` ili `find` padnu, `set -e` prekida skriptu s njihovim exit codeom prije ovog reda.
+
+> **Probaj:** pokreni skriptu dvaput zaredom i usporedi `ls -l $HOME/praktikum-backup`. Zatim je pokreni s `KEEP_DAYS=0` i pogledaj što se dogodi sa svježom arhivom.
 
 ---
 

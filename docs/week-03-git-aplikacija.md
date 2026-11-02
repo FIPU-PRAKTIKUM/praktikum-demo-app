@@ -48,13 +48,14 @@ git push -u origin lab-03-app
 | `ci` | GitHub Actions | `ci: install requirements-dev.txt` |
 | `chore` | ostalo | `chore: add .env.example` |
 
-**Jedan commit = jedna logička promjena.** Primjer iz ogledne aplikacije — PR sa shortenerom ima četiri commita:
+**Jedan commit = jedna logička promjena.** Primjer iz ogledne aplikacije — PR sa shortenerom ima pet commitova:
 
 ```
 feat: add url shortener with postgres and redis
 test: run tests without real database (sqlite + fakeredis)
 ci: install requirements-dev.txt
 docs: explain shortener and how to run it
+docs: wait for postgres before make run
 ```
 
 `update`, `fix` i `asdf` nisu poruke. Za tri mjeseca nećeš znati što si promijenio — a ni nastavnik na obrani.
@@ -154,7 +155,10 @@ cp .env.example .env
 docker run -d --name pg --env-file .env -p 5432:5432 postgres:16
 docker run -d --name redis -p 6379:6379 redis:7
 docker ps                                    # oba kontejnera Up
+until docker exec pg pg_isready -h 127.0.0.1 -U app; do sleep 1; done
 ```
+
+> **Pričekaj bazu prije `make run`.** Kontejner je *Up* nekoliko sekundi prije nego što PostgreSQL prima konekcije. Ako aplikacija krene prerano, pri startu padne s `OperationalError` i ostane mrtva (uz `--reload` proces radi, ali server ne). Tada: Ctrl+C, pričekaj bazu, ponovno `make run`. U 5. tjednu ovo čekanje preuzima Compose.
 
 ```bash
 docker stop redis      # probaj: /health mora vratiti 503

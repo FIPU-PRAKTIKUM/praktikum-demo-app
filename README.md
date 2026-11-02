@@ -31,7 +31,7 @@ Aplikacija je **URL shortener** (API + PostgreSQL + Redis) i zato nije na popisu
 | [GitHub Education](docs/github-education.md) | prije prvog termina |
 | [Git šalabahter](docs/git-cheatsheet.md) | stalno — sve git i GitHub naredbe |
 | [kind cluster](kind/README.md) | 1. tjedan i od 10. tjedna |
-| Lekcije po tjednima | [2. tjedan](docs/week-02-healthcheck.md) · ostale stižu tijekom semestra ([popis](docs/README.md#lekcije-po-tjednima)) |
+| Lekcije po tjednima | [2. tjedan](docs/week-02-healthcheck.md) · [3. tjedan](docs/week-03-git-aplikacija.md) · ostale stižu tijekom semestra ([popis](docs/README.md#lekcije-po-tjednima)) |
 
 **Predlošci** (ispunjavaš ih u svom repou): [AI log](docs/ai-log.md) · [Postmortem](docs/postmortem.md)
 
@@ -97,7 +97,8 @@ Checkpointi: tag `checkpoint-1` u 7. tjednu i `checkpoint-2` u 13. tjednu stavlj
 ### 3. tjedan — Git i suradnja
 
 - **Na vježbama:** placeholder API zamijenim URL shortenerom preko grane i pull requesta; pokažem code review i uključim branch protection na `main`.
-- **Kod:** [`app/`](app/) — shortener API + PostgreSQL + Redis, s testovima.
+- **Kod:** [`app/`](app/) — shortener API + PostgreSQL + Redis, s testovima · objašnjenje u [`app/README.md`](app/README.md).
+- **Lekcija:** [`docs/week-03-git-aplikacija.md`](docs/week-03-git-aplikacija.md).
 - **Zadatak `lab-03`:** vlastita aplikacija s najmanje 3 komponente, `/health` na svakom servisu, testovi, branch protection.
 
 ### 4. tjedan — Kontejneri I

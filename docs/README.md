@@ -29,6 +29,7 @@ Svaki tjedan ima jedan dokument: teorija potrebna za vježbu, koraci koje radimo
 | Tjedan | Lekcija | Kod |
 | --- | --- | --- |
 | 2 | [Linux za ops: health check skripta](week-02-healthcheck.md) | [`scripts/`](../scripts/README.md) |
+| 3 | [Git i suradnja: prava aplikacija](week-03-git-aplikacija.md) | [`app/`](../app/README.md) |
 
 ## Predlošci
 

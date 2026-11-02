@@ -92,6 +92,7 @@ Treba ti PostgreSQL i Redis. Do 5. tjedna (Compose) dižemo ih ručno:
 cp .env.example .env                      # jednom; po želji promijeni lozinku
 docker run -d --name pg --env-file .env -p 5432:5432 postgres:16
 docker run -d --name redis -p 6379:6379 redis:7
+until docker exec pg pg_isready -h 127.0.0.1 -U app; do sleep 1; done   # pričekaj da baza bude spremna
 
 make install                # jednom: .venv i ovisnosti
 source .venv/bin/activate   # u svakom novom terminalu
@@ -109,6 +110,8 @@ docker start redis
 ```
 
 Interaktivna dokumentacija: http://localhost:8000/docs
+
+Kontejner je *Up* nekoliko sekundi prije nego što baza prima konekcije. Ako `make run` krene prerano, aplikacija pri startu padne s `OperationalError` — prekini je (Ctrl+C), pričekaj bazu i pokreni ponovno. U 5. tjednu ovo čekanje preuzima Compose (`healthcheck` + `depends_on`).
 
 Gašenje: `docker rm -f pg redis` (podaci u bazi se brišu — trajni volumeni dolaze u 5. tjednu).
 

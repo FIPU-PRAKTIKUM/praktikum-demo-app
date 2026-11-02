@@ -119,7 +119,7 @@ Minimum iz [popisa projekata](popis-projekata.md):
 
 …i uz to `/health` koji provjerava **obje veze** i nekoliko testova.
 
-**Kako izgleda gotovo:** pogledaj [URL shortener u oglednoj aplikaciji](https://github.com/vanjaluk8/praktikum-demo-app/tree/main/app) — cijela aplikacija je ~130 redova, a [README](https://github.com/vanjaluk8/praktikum-demo-app/blob/main/app/README.md) objašnjava svaki dio.
+**Kako izgleda gotovo:** pogledaj [URL shortener u oglednoj aplikaciji](https://github.com/FIPU-PRAKTIKUM/praktikum-demo-app/tree/main/app) — cijela aplikacija je ~130 redova, a [README](https://github.com/FIPU-PRAKTIKUM/praktikum-demo-app/blob/main/app/README.md) objašnjava svaki dio.
 
 ### `/health` mora reći istinu
 
@@ -166,7 +166,7 @@ docker rm -f pg redis  # kad završiš (podaci se brišu — volumeni su u 5. tj
 
 ### Testovi bez prave baze
 
-CI nema PostgreSQL ni Redis. Zato testovi koriste zamjene: SQLite bazu u memoriji i [`fakeredis`](https://pypi.org/project/fakeredis/). Pogledaj [`app/tests/conftest.py`](https://github.com/vanjaluk8/praktikum-demo-app/blob/main/app/tests/conftest.py) u oglednoj aplikaciji.
+CI nema PostgreSQL ni Redis. Zato testovi koriste zamjene: SQLite bazu u memoriji i [`fakeredis`](https://pypi.org/project/fakeredis/). Pogledaj [`app/tests/conftest.py`](https://github.com/FIPU-PRAKTIKUM/praktikum-demo-app/blob/main/app/tests/conftest.py) u oglednoj aplikaciji.
 
 **Dodao si ovisnost za testove (npr. `fakeredis`)?** Stavi je u `app/requirements-dev.txt` i u `.github/workflows/ci.yml` promijeni instalaciju u:
 

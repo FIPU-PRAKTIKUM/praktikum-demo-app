@@ -241,7 +241,7 @@ git push -f origin checkpoint-1
 Stanje nakon svake vježbe označeno je tagom `week-XX`. Ovdje ništa ne predaješ, samo gledaš.
 
 ```bash
-git clone https://github.com/vanjaluk8/praktikum-demo-app.git
+git clone https://github.com/FIPU-PRAKTIKUM/praktikum-demo-app.git
 cd praktikum-demo-app
 
 git pull --tags                  # povuci nove tjedne

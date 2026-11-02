@@ -2,7 +2,7 @@
 
 One lab = **one branch + one pull request labeled `lab-XX`**. Run all commands from the repository root.
 
-> This exact flow was used for the `lab-02` example: [PR #1](https://github.com/vanjaluk8/praktikum-demo-app/pull/1) (`scripts/backup-docs.sh`). Open it to see what a finished PR looks like.
+> This exact flow was used for the `lab-02` example: [PR #1](https://github.com/FIPU-PRAKTIKUM/praktikum-demo-app/pull/1) (`scripts/backup-docs.sh`). Open it to see what a finished PR looks like.
 
 ## 1. Start from an up-to-date `main`
 

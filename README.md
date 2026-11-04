@@ -110,7 +110,7 @@ Checkpointi: tag `checkpoint-1` u 7. tjednu i `checkpoint-2` u 13. tjednu stavlj
 ### 5. tjedan — Kontejneri II
 
 - **Na vježbama:** `compose.yaml` za cijeli stack — healthcheck, `depends_on`, volumeni, `.env`. Skripta iz 2. tjedna dobiva nove servise.
-- **Kod:** `compose.yaml` u rootu, [`.env.example`](.env.example), [`scripts/healthcheck.sh`](scripts/healthcheck.sh).
+- **Kod:** `compose.yaml` u rootu, [`.env`](.env), [`scripts/healthcheck.sh`](scripts/healthcheck.sh).
 - **Zadatak `lab-05`:** cijeli stack se diže s `docker compose up`.
 
 ### 6. tjedan — Continuous Integration

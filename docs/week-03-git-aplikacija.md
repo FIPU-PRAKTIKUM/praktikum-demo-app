@@ -136,7 +136,7 @@ Proces koji radi, a ne može do baze, **nije zdrav**. Skripte, Docker i Kubernet
 
 ### Konfiguracija u `.env`, ne u kodu
 
-Adresa baze, korisnik i lozinka dolaze iz varijabli okruženja. U `.env.example` (ide u git) napiši **koje** varijable trebaju, a stvarne vrijednosti drži u `.env` (u `.gitignore`).
+Adresa baze, korisnik i lozinka dolaze iz varijabli okruženja. U `../.env` (ide u git) napiši **koje** varijable trebaju, a stvarne vrijednosti drži u `.env` (u `.gitignore`).
 
 ```
 POSTGRES_USER=app
@@ -151,7 +151,7 @@ REDIS_URL=redis://localhost:6379/0
 Compose stiže u 5. tjednu. Dotad ovisnosti dižeš ručno — službeni postgres image čita iste `POSTGRES_*` varijable, pa mu daš isti `.env`:
 
 ```bash
-cp .env.example .env
+cp .env .env
 docker run -d --name pg --env-file .env -p 5432:5432 postgres:16
 docker run -d --name redis -p 6379:6379 redis:7
 docker ps                                    # oba kontejnera Up
@@ -193,7 +193,7 @@ Na grani `lab-03-…`, kao PR s labelom `lab-03`:
 
 - [ ] placeholder je zamijenjen tvojom aplikacijom: **API + baza + Redis**
 - [ ] `/health` provjerava bazu i Redis i vraća **`503`** kad neka ne radi
-- [ ] `.env.example` s potrebnim varijablama; lozinke nisu u kodu ni u gitu
+- [ ] `../.env` s potrebnim varijablama; lozinke nisu u kodu ni u gitu
 - [ ] testovi prolaze (`make test`) i **CI na PR-u je zelen**
 - [ ] **branch protection** na `main` prema poglavlju 4
 - [ ] više od jednog commita, poruke po Conventional Commits

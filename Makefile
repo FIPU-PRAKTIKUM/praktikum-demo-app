@@ -18,8 +18,8 @@ lint:            ## Lint Python koda
 test:            ## Pokreni testove
 	python -m pytest -q
 
-run:             ## Pokreni API lokalno bez Dockera (http://localhost:8000)
-	cd app && uvicorn main:app --reload --host 0.0.0.0 --port 8000
+run:             ## Pokreni API lokalno bez Dockera (http://localhost:8000), s varijablama iz .env
+	cd app && uvicorn main:app --reload --host 0.0.0.0 --port 8000 $(if $(wildcard .env),--env-file ../.env)
 
 cluster-up:      ## Podigni lokalni kind cluster
 	kind create cluster --config kind/kind-config.yaml

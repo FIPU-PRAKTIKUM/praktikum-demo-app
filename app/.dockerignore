@@ -1,0 +1,11 @@
+# U image ide samo ono što aplikaciji treba za rad.
+tests/
+requirements-dev.txt
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.env
+Dockerfile
+.dockerignore
+README.md

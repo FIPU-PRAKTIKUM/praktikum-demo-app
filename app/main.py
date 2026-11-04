@@ -1,7 +1,7 @@
 """URL shortener — ogledna aplikacija s vježbi.
 
 Tri komponente: ovaj API, PostgreSQL (trajna pohrana linkova) i Redis (cache).
-Sva konfiguracija dolazi iz varijabli okruženja (vidi .env.example).
+Sva konfiguracija dolazi iz varijabli okruženja (vidi .env).
 """
 
 import os

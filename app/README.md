@@ -89,7 +89,7 @@ Klasični **cache-aside** obrazac. Redis je ubrzanje, ne izvor istine: ako padne
 Treba ti PostgreSQL i Redis. Do 5. tjedna (Compose) dižemo ih ručno:
 
 ```bash
-cp .env.example .env                      # jednom; po želji promijeni lozinku
+cp .env .env                      # jednom; po želji promijeni lozinku
 docker run -d --name pg --env-file .env -p 5432:5432 postgres:16
 docker run -d --name redis -p 6379:6379 redis:7
 until docker exec pg pg_isready -h 127.0.0.1 -U app; do sleep 1; done   # pričekaj da baza bude spremna

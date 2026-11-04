@@ -104,7 +104,8 @@ Checkpointi: tag `checkpoint-1` u 7. tjednu i `checkpoint-2` u 13. tjednu stavlj
 ### 4. tjedan — Kontejneri I
 
 - **Na vježbama:** Dockerfile za API — prvo naivni, pa multi-stage i non-root; usporedba veličine imagea.
-- **Kod:** `app/Dockerfile` (dodaje se u [`app/`](app/)).
+- **Kod:** [`app/Dockerfile`](app/Dockerfile), [`app/.dockerignore`](app/.dockerignore).
+- **Lekcija:** [`docs/week-04-docker.md`](docs/week-04-docker.md).
 - **Zadatak `lab-04`:** Dockerfile s imageom manjim od 300 MB koji ne radi kao root.
 
 ### 5. tjedan — Kontejneri II

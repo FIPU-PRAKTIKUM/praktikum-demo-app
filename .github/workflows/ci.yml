@@ -1,5 +1,5 @@
-# CI pipeline — kostur.
-# Od 1. tjedna pokreće lint i testove. Ostatak nadograđuješ na vježbama.
+# CI pipeline: lint, testovi i build imagea na svaki PR i svaki push na main.
+# Objašnjenje linija po liniju: docs/week-06-ci.md
 name: CI
 
 on:
@@ -7,15 +7,22 @@ on:
   push:
     branches: [main]
 
+# Novi push na istu granu otkazuje stari run koji je još u tijeku (štedi minute).
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: app/requirements*.txt
 
       - name: Install dependencies
         run: pip install -r app/requirements-dev.txt
@@ -26,9 +33,22 @@ jobs:
       - name: Test
         run: python -m pytest -q
 
-  # TODO (6. tjedan): build Docker imagea
-  #   - docker/setup-buildx-action
-  #   - docker/build-push-action (push: false na PR-u)
+  build:
+    needs: test                 # build tek kad lint i testovi prođu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: docker/setup-buildx-action@v4
+
+      - name: Build image
+        uses: docker/build-push-action@v7
+        with:
+          context: ./app
+          push: false           # 6. tjedan: samo provjera da se image builda
+          build-args: APP_VERSION=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   # TODO (7. tjedan): push imagea u GHCR na merge u main
   #   - docker/login-action s ${{ secrets.GITHUB_TOKEN }}

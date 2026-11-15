@@ -119,6 +119,7 @@ Checkpointi: tag `checkpoint-1` u 7. tjednu i `checkpoint-2` u 13. tjednu stavlj
 
 - **Na vježbama:** GitHub Actions — lint, testovi, build imagea; namjerno slomljen test da se vidi crveni pipeline.
 - **Kod:** [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+- **Lekcija:** [`docs/week-06-ci.md`](docs/week-06-ci.md).
 - **Zadatak `lab-06`:** build imagea u CI-ju na svaki PR.
 
 ### 7. tjedan — Continuous Delivery

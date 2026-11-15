@@ -6,7 +6,7 @@ def test_root_has_version(client):
 
 def test_health_ok_when_dependencies_work(client):
     response = client.get("/health")
-    assert response.status_code == 200
+    assert response.status_code == 201
     assert response.json()["checks"] == {"postgres": "ok", "redis": "ok"}
 
 

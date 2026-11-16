@@ -65,7 +65,7 @@ Svaka mapa ima svoj `README.md`: što je u njoj, zašto postoji i objašnjenje k
 | 2 | [Linux za ops](#2-tjedan--linux-za-ops) | [`scripts/`](scripts/) | `lab-02` | `week-02` | gotovo |
 | 3 | [Git i suradnja](#3-tjedan--git-i-suradnja) | [`app/`](app/) | `lab-03` | `week-03` | planirano |
 | 4 | [Kontejneri I](#4-tjedan--kontejneri-i) | [`app/`](app/) | `lab-04` | `week-04` | planirano |
-| 5 | [Kontejneri II](#5-tjedan--kontejneri-ii) | root (`compose.yaml`) | `lab-05` | `week-05` | planirano |
+| 5 | [Kontejneri II](#5-tjedan--kontejneri-ii) | [`compose.yaml`](compose.yaml) | `lab-05` | `week-05` | planirano |
 | 6 | [Continuous Integration](#6-tjedan--continuous-integration) | [`.github/workflows/`](.github/workflows/) | `lab-06` | `week-06` | planirano |
 | 7 | [Continuous Delivery](#7-tjedan--continuous-delivery) | [`.github/workflows/`](.github/workflows/) | `lab-07` | `week-07` | planirano |
 | 8 | [Infrastructure as Code](#8-tjedan--infrastructure-as-code) | `infra/` | `lab-08` | `week-08` | otvoreno |
@@ -111,13 +111,15 @@ Checkpointi: tag `checkpoint-1` u 7. tjednu i `checkpoint-2` u 13. tjednu stavlj
 ### 5. tjedan — Kontejneri II
 
 - **Na vježbama:** `compose.yaml` za cijeli stack — healthcheck, `depends_on`, volumeni, `.env`. Skripta iz 2. tjedna dobiva nove servise.
-- **Kod:** `compose.yaml` u rootu, [`.env`](.env), [`scripts/healthcheck.sh`](scripts/healthcheck.sh).
+- **Kod:** [`compose.yaml`](compose.yaml), [`.env.example`](.env.example), [`scripts/healthcheck.sh`](scripts/healthcheck.sh).
+- **Lekcija:** [`docs/week-05-compose.md`](docs/week-05-compose.md).
 - **Zadatak `lab-05`:** cijeli stack se diže s `docker compose up`.
 
 ### 6. tjedan — Continuous Integration
 
 - **Na vježbama:** GitHub Actions — lint, testovi, build imagea; namjerno slomljen test da se vidi crveni pipeline.
 - **Kod:** [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+- **Lekcija:** [`docs/week-06-ci.md`](docs/week-06-ci.md).
 - **Zadatak `lab-06`:** build imagea u CI-ju na svaki PR.
 
 ### 7. tjedan — Continuous Delivery

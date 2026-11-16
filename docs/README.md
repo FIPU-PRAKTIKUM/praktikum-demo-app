@@ -31,6 +31,8 @@ Svaki tjedan ima jedan dokument: teorija potrebna za vježbu, koraci koje radimo
 | 2 | [Linux za ops: health check skripta](week-02-healthcheck.md) | [`scripts/`](../scripts/README.md) |
 | 3 | [Git i suradnja: prava aplikacija](week-03-git-aplikacija.md) | [`app/`](../app/README.md) |
 | 4 | [Kontejneri I: Dockerfile](week-04-docker.md) | [`app/Dockerfile`](../app/Dockerfile) |
+| 5 | [Kontejneri II: Docker Compose](week-05-compose.md) | [`compose.yaml`](../compose.yaml), [`scripts/healthcheck.sh`](../scripts/README.md) |
+| 6 | [Continuous Integration](week-06-ci.md) | [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) |
 
 ## Predlošci
 

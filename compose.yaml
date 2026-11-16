@@ -1,0 +1,55 @@
+# URL shortener — cijeli stack: API + PostgreSQL + Redis.
+# Pokretanje (iz korijena repozitorija):
+#   cp .env.example .env            # jednom
+#   docker compose up -d --build
+#   docker compose ps               # svi servisi (healthy)
+#   docker compose down             # -v briše i podatke iz baze!
+# Objašnjenje: docs/week-05-compose.md
+
+services:
+  api:
+    build:
+      context: ./app
+      args:
+        APP_VERSION: ${APP_VERSION:-dev}   # iz .env; vidi GET /
+    image: shortener
+    env_file: .env
+    environment:
+      # U Compose mreži servisi se nalaze po imenu. localhost bi bio sam kontejner.
+      POSTGRES_HOST: db
+      REDIS_URL: redis://cache:6379/0
+    ports:
+      - "8000:8000"                        # jedini servis dostupan s računala
+    depends_on:
+      db:
+        condition: service_healthy         # ne "pokrenut", nego "spreman"
+      cache:
+        condition: service_healthy
+    restart: unless-stopped
+    # healthcheck je već u Dockerfileu (HEALTHCHECK) i Compose ga koristi
+
+  db:
+    image: postgres:16
+    env_file: .env                         # POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB
+    volumes:
+      - pgdata:/var/lib/postgresql/data    # podaci preživljavaju "down" i "up"
+    healthcheck:
+      # -h 127.0.0.1: tijekom prve inicijalizacije baza sluša samo na socketu,
+      # pa ova provjera prolazi tek kad je baza stvarno spremna za API.
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  cache:
+    image: redis:7
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  pgdata:

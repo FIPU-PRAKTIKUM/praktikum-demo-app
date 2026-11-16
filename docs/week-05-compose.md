@@ -120,7 +120,7 @@ volumes:
   pgdata:
 ```
 
-Bez volumena podaci baze žive u sloju za pisanje kontejnera (4. tjedan, poglavlje 1) i nestaju s njim. `docker compose down` briše kontejnere, pa s njima i sve kratke linkove.
+Podaci zapisani u kontejner žive u njegovom sloju za pisanje (4. tjedan, poglavlje 1) i nestaju s njim. Image `postgres` to pokušava spriječiti: u svom Dockerfileu ima `VOLUME /var/lib/postgresql/data`, pa Docker za bazu sam napravi **anonimni** volumen s nasumičnim imenom (`docker volume ls`). Nakon `docker compose down` novi kontejner baze dobije **novi** anonimni volumen i ne nađe stari. Kratki linkovi su „nestali”, a stari volumen ostaje na disku kao smeće.
 
 **Named volume** (`pgdata`) je spremište kojim upravlja Docker, izvan kontejnera. Novi kontejner baze dobije isti volumen i nađe stare podatke.
 
